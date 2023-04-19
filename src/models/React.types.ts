@@ -1,0 +1,1 @@
+export type ReactChildren = React.FC<{children: JSX.Element|JSX.Element[]}>;
