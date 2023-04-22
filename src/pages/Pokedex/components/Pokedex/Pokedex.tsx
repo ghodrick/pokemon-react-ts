@@ -1,11 +1,16 @@
+import { Pokedex as PokedexType } from "../../../../models/Pokedex.types";
 import PokedexFilters from "../PokedexFilters/PokedexFilters";
 import PokedexList from "../PokedexList/PokedexList";
 
-const Pokedex = () => {
+interface PropsPokedex {
+    data: PokedexType;
+}
+
+const Pokedex = ({ data }: PropsPokedex) => {
     return (
         <div>
             <PokedexFilters />
-            <PokedexList />
+            <PokedexList pokemons={data.pokemons} />
         </div>
     );
 };
