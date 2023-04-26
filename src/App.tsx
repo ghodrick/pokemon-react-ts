@@ -1,10 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Layout from "./components/layout/main/Layout";
+import Cargando from "./components/loaders/Cargando/Cargando";
 
 function App() {
+
+    const navigation = useNavigation();
+
+    console.log(navigation)
+
     return (
         <Layout>
-            <Outlet />
+            <Cargando active={navigation.state}>
+                <Outlet />
+            </Cargando>
         </Layout>
     );
 }

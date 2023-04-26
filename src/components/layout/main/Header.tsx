@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 
 const Header = ({className = ''}) => {
     return ( 
-        <header className={`bg-white flex items-center rounded-xl shadow-md shadow-slate-200 ${className}`}>
+        <header className={`bg-white flex items-center rounded-xl shadow-md shadow-slate-200 px-4 ${className}`}>
             <Logo />
             <NavBar />
         </header>

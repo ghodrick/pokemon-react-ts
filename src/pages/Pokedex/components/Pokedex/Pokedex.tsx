@@ -8,7 +8,7 @@ interface PropsPokedex {
 
 const Pokedex = ({ data }: PropsPokedex) => {
     return (
-        <div>
+        <div className="space-y-10">
             <PokedexFilters />
             <PokedexList pokemons={data.pokemons} />
         </div>

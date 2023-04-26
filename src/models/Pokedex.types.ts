@@ -14,6 +14,7 @@ export interface PokedexPokemon {
 }
 
 export interface TipoPokemon {
+    id: string;
     nombre: string;
     icono: string;
     color: string;
@@ -31,22 +32,22 @@ export type ImagenPokemonPokedex = {
 }
 
 export interface PokemonTypes {
-    bug: TipoPokemon;
-    dark: TipoPokemon;
-    dragon: TipoPokemon;
-    electric: TipoPokemon;
-    fairy: TipoPokemon;
-    fighting: TipoPokemon;
-    fire: TipoPokemon;
-    flying: TipoPokemon;
-    ghost: TipoPokemon;
-    grass: TipoPokemon;
-    ground: TipoPokemon;
-    ice: TipoPokemon;
-    normal: TipoPokemon;
-    poison: TipoPokemon;
-    psychic: TipoPokemon;
-    rock: TipoPokemon;
-    steel: TipoPokemon;
-    water: TipoPokemon;
+    bug: Omit<TipoPokemon, 'id'>;
+    dark: Omit<TipoPokemon, 'id'>;
+    dragon: Omit<TipoPokemon, 'id'>;
+    electric: Omit<TipoPokemon, 'id'>;
+    fairy: Omit<TipoPokemon, 'id'>;
+    fighting: Omit<TipoPokemon, 'id'>;
+    fire: Omit<TipoPokemon, 'id'>;
+    flying: Omit<TipoPokemon, 'id'>;
+    ghost: Omit<TipoPokemon, 'id'>;
+    grass: Omit<TipoPokemon, 'id'>;
+    ground: Omit<TipoPokemon, 'id'>;
+    ice: Omit<TipoPokemon, 'id'>;
+    normal: Omit<TipoPokemon, 'id'>;
+    poison: Omit<TipoPokemon, 'id'>;
+    psychic: Omit<TipoPokemon, 'id'>;
+    rock: Omit<TipoPokemon, 'id'>;
+    steel: Omit<TipoPokemon, 'id'>;
+    water: Omit<TipoPokemon, 'id'>;
 }

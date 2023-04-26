@@ -1,7 +1,7 @@
 import { PokemonTypes } from "../models/Pokedex.types";
 
-export const TIPOS_POKEMON : PokemonTypes = {
-    bug: {
+export const TIPOS_POKEMON :  PokemonTypes = {
+    bug:  {
         nombre: 'Bicho',
         icono: '/assets/pokemon/tipos/bicho.svg',
         color: '#A8B820'
@@ -91,4 +91,13 @@ export const TIPOS_POKEMON : PokemonTypes = {
         icono: '/assets/pokemon/tipos/agua.svg',
         color: '#6890F0'
     }
+}
+
+export enum MAP_STATS  {
+    hp = 'HP',
+    attack = 'AT',
+    defense = 'DF',
+    'special-attack' = 'SA',
+    'special-defense' = 'SD',
+    speed = 'SP'
 }

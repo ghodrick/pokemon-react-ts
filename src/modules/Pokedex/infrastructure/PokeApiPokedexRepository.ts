@@ -56,7 +56,7 @@ export class PokeApiPokedexRepository implements PokedexRepository {
     
         return {
             id: pokemon.id,
-            numero: pokemon.order,
+            numero: pokemon.id,
             nombre: pokemon.name,
             peso: pokemon.weight,
             tipos: pokemon.types.map((tipo) => this.transformaTipo(tipo)),
@@ -82,9 +82,10 @@ export class PokeApiPokedexRepository implements PokedexRepository {
         const nombreTipo = tipo.type.name as keyof typeof TIPOS_POKEMON;
     
         return {
-            nombre: tipo.type.name,
+            id: tipo.type.name,
+            nombre: TIPOS_POKEMON[nombreTipo].nombre,
             icono: TIPOS_POKEMON[nombreTipo].icono,
-            color: TIPOS_POKEMON[nombreTipo].color
+            color: TIPOS_POKEMON[nombreTipo].color,
         }
     }
 }
