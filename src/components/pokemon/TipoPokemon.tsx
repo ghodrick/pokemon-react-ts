@@ -40,8 +40,6 @@ const TipoPokemon = ({type, showName = true, rounded = 'full', className = ''} :
         className
     )
 
-    //write a tailwind class to get type.color as shadow bg color
-    
 
     return ( 
         <div className={classesTipoPokemon}>

@@ -6,8 +6,6 @@ function App() {
 
     const navigation = useNavigation();
 
-    console.log(navigation)
-
     return (
         <Layout>
             <Cargando active={navigation.state}>

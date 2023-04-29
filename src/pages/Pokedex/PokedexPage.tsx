@@ -1,26 +1,29 @@
-import { json, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import LayoutPokedex from "./components/LayoutPokedex/LayoutPokedex";
 import Pokedex from "./components/Pokedex/Pokedex";
 import { PokedexRepository } from "../../modules/Pokedex/domain/PokedexRepository";
 import { Pokedex as PokedexType } from "../../models/Pokedex.types";
+import { pokedexQuery } from "../../hooks/api/Pokedex/usePokedexList";
+import { QueryClient } from "@tanstack/react-query";
 
-//TODO: Quizás esto, siguiendo la arquitectura hexagonal, debería estar en la capa de aplicación
+//TODO: Quizás esto, siguiendo la arquitectura hexagonal, debería estar en la capa de aplicación como getPokedex
+//No obstante veo más limpio tenerlo aquí, ya que al entrar en la página se puede ver directamente que se está cargando.
 
-export async function loader(repository: PokedexRepository) {
+export async function loader(repository: PokedexRepository, queryClient: QueryClient) : Promise<PokedexType> {
     
-    const pokedex = await repository.getPokedex();
-    
+    const queryData = pokedexQuery(repository);
 
-    return json({
-        pokedex
-    })
+    return queryClient.ensureQueryData({
+        ...queryData,
+        cacheTime: 1000 * 60 * 60 * 24 * 1, // 1 day
+    });
+
 }
 
 
 const PokedexPage = () => {
 
-    const {pokedex} = useLoaderData() as {pokedex: PokedexType};
-
+    const pokedex = useLoaderData() as PokedexType;
 
     return (
         <LayoutPokedex>
