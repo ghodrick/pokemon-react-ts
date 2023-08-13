@@ -1,121 +1,159 @@
 /** @type {import('tailwindcss').Config} */
-
-export default {
+module.exports = {
+  darkMode: ["class"],
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+	],
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#25242C",
-          "50":"#E9E9ED",
-          "100":"#D0CFD8",
-          "200":"#A2A0B1",
-          "300":"#747089",
-          "400":"#4E4C5D",
-          "500":"#25242C",
-          "600":"#1F1E24",
-          "700":"#151519",
-          "800":"#0E0E11",
-          "900":"#070708"
+          DEFAULT: "hsl(var(--primary))",
+          50:  "hsl(var(--primary-50))",
+          100: "hsl(var(--primary-100))",
+          200: "hsl(var(--primary-200))",
+          300: "hsl(var(--primary-300))",
+          400: "hsl(var(--primary-400))",
+          500: "hsl(var(--primary))",
+          600: "hsl(var(--primary-600))",
+          700: "hsl(var(--primary-700))",
+          800: "hsl(var(--primary-800))",
+          900: "hsl(var(--primary-900))",
+          950: "hsl(var(--primary-950))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        shadow: {
+          DEFAULT: "hsl(var(--shadow))"
         },
         planta: {
-          DEFAULT: "#78c850",
-          lighter: "#91d76e",
-          darker: "#5fb03a"
+          DEFAULT: 'hsl(var(--planta))',
+          lighter: 'hsl(var(--planta-lighter))',
+          darker: 'hsl(var(--planta-darker))'
         },
         agua: {
-          DEFAULT: "#6890f0",
-          lighter: "#7da9f7",
-          darker: "#4f6ec9"
+          DEFAULT: 'hsl(var(--agua))',
+          lighter: 'hsl(var(--agua-lighter))',
+          darker: 'hsl(var(--agua-darker))'
         },
         fuego: {
-          DEFAULT: "#f08030",
-          lighter: "#f79d6e",
-          darker: "#c95e1d"
+          DEFAULT: 'hsl(var(--fuego))',
+          lighter: 'hsl(var(--fuego-lighter))',
+          darker: 'hsl(var(--fuego-darker))'
         },
         electrico: {
-          DEFAULT: "#f8d030",
-          lighter: "#fde46e",
-          darker: "#c7a21d"
+          DEFAULT: 'hsl(var(--electrico))',
+          lighter: 'hsl(var(--electrico-lighter))',
+          darker: 'hsl(var(--electrico-darker))'
         },
         hielo: {
-          DEFAULT: "#98d8d8",
-          lighter: "#b3e6e6",
-          darker: "#70b2b2"
+          DEFAULT: 'hsl(var(--hielo))',
+          lighter: 'hsl(var(--hielo-lighter))',
+          darker: 'hsl(var(--hielo-darker))'
         },
         lucha: {
-          DEFAULT: "#c03028",
-          lighter: "#d76e6e",
-          darker: "#9d1f1f"
+          DEFAULT: 'hsl(var(--lucha))',
+          lighter: 'hsl(var(--lucha-lighter))',
+          darker: 'hsl(var(--lucha-darker))'
         },
         veneno: {
-          DEFAULT: "#a040a0",
-          lighter: "#c06ec0",
-          darker: "#7d2f7d"
+          DEFAULT: 'hsl(var(--veneno))',
+          lighter: 'hsl(var(--veneno-lighter))',
+          darker: 'hsl(var(--veneno-darker))'
         },
         tierra: {
-          DEFAULT: "#e0c068",
-          lighter: "#e6d69d",
-          darker: "#b29d4f"
+          DEFAULT: 'hsl(var(--tierra))',
+          lighter: 'hsl(var(--tierra-lighter))',
+          darker: 'hsl(var(--tierra-darker))'
         },
         volador: {
-          DEFAULT: "#a890f0",
-          lighter: "#c6b7f7",
-          darker: "#8169c9"
+          DEFAULT: 'hsl(var(--volador))',
+          lighter: 'hsl(var(--volador-lighter))',
+          darker: 'hsl(var(--volador-darker))'
         },
         psiquico: {
-          DEFAULT: "#f85888",
-          lighter: "#f97db3",
-          darker: "#c93d6e"
+          DEFAULT: 'hsl(var(--psiquico))',
+          lighter: 'hsl(var(--psiquico-lighter))',
+          darker: 'hsl(var(--psiquico-darker))'
         },
         bicho: {
-          DEFAULT: "#a8b820",
-          lighter: "#c1d96e",
-          darker: "#80911f"
+          DEFAULT: 'hsl(var(--bicho))',
+          lighter: 'hsl(var(--bicho-lighter))',
+          darker: 'hsl(var(--bicho-darker))'
         },
         roca: {
-          DEFAULT: "#b8a038",
-          lighter: "#d1c16e",
-          darker: "#8c762f"
+          DEFAULT: 'hsl(var(--roca))',
+          lighter: 'hsl(var(--roca-lighter))',
+          darker: 'hsl(var(--roca-darker))'
         },
         fantasma: {
-          DEFAULT: "#705898",
-          lighter: "#8e7db3",
-          darker: "#56466e"
+          DEFAULT: 'hsl(var(--fantasma))',
+          lighter: 'hsl(var(--fantasma-lighter))',
+          darker: 'hsl(var(--fantasma-darker))'
         },
         dragon: {
-          DEFAULT: "#7038f8",
-          lighter: "#8e7db3",
-          darker: "#56466e"
+          DEFAULT: 'hsl(var(--dragon))',
+          lighter: 'hsl(var(--dragon-lighter))',
+          darker: 'hsl(var(--dragon-darker))'
         },
         acero: {
-          DEFAULT: "#b8b8d0",
-          lighter: "#d1d1e6",
-          darker: "#8c8c9d"
+          DEFAULT: 'hsl(var(--acero))',
+          lighter: 'hsl(var(--acero-lighter))',
+          darker: 'hsl(var(--acero-darker))'
         },
         normal: {
-          DEFAULT: "#a8a878",
-          lighter: "#c1c196",
-          darker: "#808058"
+          DEFAULT: 'hsl(var(--normal))',
+          lighter: 'hsl(var(--normal-lighter))',
+          darker: 'hsl(var(--normal-darker))'
         },
         siniestro: {
-          DEFAULT: "#705848",
-          lighter: "#8e7b6e",
-          darker: "#56433d"
+          DEFAULT: 'hsl(var(--siniestro))',
+          lighter: 'hsl(var(--siniestro-lighter))',
+          darker: 'hsl(var(--siniestro-darker))'
         },
         hada: {
-          DEFAULT: "#ee99ac",
-          lighter: "#f4bdc6",
-          darker: "#c66f83"
-        }
-
-      },
-      textColor: {
-        'contrast-primary': {
-          DEFAULT: '#ffffff'
+          DEFAULT: 'hsl(var(--hada))',
+          lighter: 'hsl(var(--hada-lighter))',
+          darker: 'hsl(var(--hada-darker))'
         }
       },
       fontFamily: {
@@ -123,8 +161,26 @@ export default {
         title: 'Lexend, sans-serif',
         mono: '"Chivo Mono", monospace'
       },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: 0 },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 }
-

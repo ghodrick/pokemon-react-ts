@@ -22,7 +22,7 @@ export class PokeApiPokedexRepository implements PokedexRepository {
                 nombre: datosPokedex.name,
                 pokemons: []
             }
-
+            
             datosPokedex.pokemon_entries.forEach((pokemon) => {
 
                 const urlPokemon = `${this.baseUrl}pokemon/${pokemon.entry_number}`;

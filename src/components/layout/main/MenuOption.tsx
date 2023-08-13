@@ -20,7 +20,7 @@ const MenuOption = ({data} : MenuOptionProps) => {
                 </span>
                 
             </Link>
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-primary-600 transform origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"></div>
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-primary transform origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"></div>
         </li>
      );
 }

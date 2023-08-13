@@ -1,6 +1,191 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  :root {
+    /*Colores de fondo*/
+    --background: 216 49% 99%;
+    --foreground: 222.2 84% 4.9%;
+
+    /*Colores de cards*/
+    --card: 0 0% 100%;
+    --card-foreground: 215 83% 21%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    
+    /*Color principal*/
+    --primary-foreground: 210 40% 99%;
+    --primary-50:  214.3 20% 93.1%;
+    --primary-100: 212.3 19.4% 86.9%;
+    --primary-200: 213.6 18.8% 73.9%;
+    --primary-300: 215.4 19.6% 61%;
+    --primary-400: 215.7 19.2% 48%;
+    --primary:     215.3 19.3% 34.5%;
+    --primary-600: 215.6 18.9% 28%;
+    --primary-700: 214.3 19.6% 21%;
+    --primary-800: 214.3 19.4% 14.1%;
+    --primary-900: 214.3 20% 6.9%;
+    --primary-950: 220 20% 2.9%;
+    
+    /*Color secundario*/
+    --secondary-foreground: 210 40% 99%;
+    --secondary-50:  214.3 20% 93.1%;
+    --secondary-100: 212.3 19.4% 86.9%;
+    --secondary-200: 213.6 18.8% 73.9%;
+    --secondary-300: 215.4 19.6% 61%;
+    --secondary-400: 215.7 19.2% 48%;
+    --secondary:     215.3 19.3% 34.5%;
+    --secondary-600: 215.6 18.9% 28%;
+    --secondary-700: 214.3 19.6% 21%;
+    --secondary-800: 214.3 19.4% 14.1%;
+    --secondary-900: 214.3 20% 6.9%;
+    --secondary-950: 220 20% 2.9%;
+
+    /*Color terciario*/
+    --terciary-foreground: 210 40% 99%;
+    --terciary-50:  214.3 20% 93.1%;
+    --terciary-100: 212.3 19.4% 86.9%;
+    --terciary-200: 213.6 18.8% 73.9%;
+    --terciary-300: 215.4 19.6% 61%;
+    --terciary-400: 215.7 19.2% 48%;
+    --terciary:     215.3 19.3% 34.5%;
+    --terciary-600: 215.6 18.9% 28%;
+    --terciary-700: 214.3 19.6% 21%;
+    --terciary-800: 214.3 19.4% 14.1%;
+    --terciary-900: 214.3 20% 6.9%;
+    --terciary-950: 220 20% 2.9%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --shadow: 216deg 12.2% 83.92%;
+ 
+    --radius: 0.5rem;
+
+    /*Colores adicionales*/
+    --planta: 100deg 52% 55%;
+    --planta-lighter: 100deg 57% 64%;
+    --planta-darker: 100deg 48% 45%;
+
+    --agua: 216deg 57% 56%;
+    --agua-lighter: 216deg 66% 64%;
+    --agua-darker: 216deg 49% 49%;
+
+    --fuego: 18deg 73% 58%;
+    --fuego-lighter: 18deg 75% 68%;
+    --fuego-darker: 18deg 69% 50%;
+
+    --electrico: 45deg 75% 56%;
+    --electrico-lighter: 45deg 81% 66%;
+    --electrico-darker: 45deg 76% 51%;
+
+    --hielo: 180deg 35% 69%;
+    --hielo-lighter: 180deg 35% 79%;
+    --hielo-darker: 180deg 35% 60%;
+
+    --lucha: 0deg 64% 44%;
+    --lucha-lighter: 0deg 63% 55%;
+    --lucha-darker: 0deg 67% 37%;
+
+    --veneno: 300deg 44% 47%;
+    --veneno-lighter: 300deg 44% 57%;
+    --veneno-darker: 300deg 46% 37%;
+
+    --tierra: 45deg 57% 68%;
+    --tierra-lighter: 45deg 52% 77%;
+    --tierra-darker: 45deg 48% 53%;
+
+    --volador: 253deg 57% 69%;
+    --volador-lighter: 253deg 61% 79%;
+    --volador-darker: 253deg 52% 60%;
+
+    --psiquico: 342deg 66% 61%;
+    --psiquico-lighter: 342deg 64% 71%;
+    --psiquico-darker: 342deg 68% 50%;
+
+    --bicho: 74deg 50% 47%;
+    --bicho-lighter: 74deg 57% 57%;
+    --bicho-darker: 74deg 67% 37%;
+
+    --roca: 46deg 44% 50%;
+    --roca-lighter: 46deg 47% 60%;
+    --roca-darker: 46deg 49% 40%;
+
+    --fantasma: 261deg 28% 39%;
+    --fantasma-lighter: 261deg 27% 49%;
+    --fantasma-darker: 261deg 29% 30%;
+
+    --dragon: 261deg 82% 58%;
+    --dragon-lighter: 261deg 27% 49%;
+    --dragon-darker: 261deg 29% 30%;
+
+    --acero: 240deg 20% 70%;
+    --acero-lighter: 240deg 20% 80%;
+    --acero-darker: 240deg 22% 60%;
+
+    --normal: 60deg 21% 53%;
+    --normal-lighter: 60deg 21% 63%;
+    --normal-darker: 60deg 23% 43%;
+
+    --siniestro: 0deg 23% 33%;
+    --siniestro-lighter: 0deg 23% 43%;
+    --siniestro-darker: 0deg 24% 23%;
+
+    --hada: 347deg 71% 77%;
+    --hada-lighter: 350deg 71% 85%;
+    --hada-darker: 346deg 43% 61%;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: hsl(213, 27%, 84%);
+    --shadow: 220 13.04% 90.98%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
 
 html, body, #root, #root > div, #AppContainer {
   min-height: 100vh;

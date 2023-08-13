@@ -6,8 +6,10 @@ import { Pokedex as PokedexType } from "../../models/Pokedex.types";
 import { pokedexQuery } from "../../hooks/api/Pokedex/usePokedexList";
 import { QueryClient } from "@tanstack/react-query";
 
-//TODO: Quizás esto, siguiendo la arquitectura hexagonal, debería estar en la capa de aplicación como getPokedex
-//No obstante veo más limpio tenerlo aquí, ya que al entrar en la página se puede ver directamente que se está cargando.
+/*
+    TODO: Quizás esto, siguiendo la arquitectura hexagonal, debería estar en la capa de aplicación como getPokedex
+    No obstante veo más limpio tenerlo aquí, ya que al entrar en la página se puede ver directamente que se está cargando.
+*/
 
 export async function loader(repository: PokedexRepository, queryClient: QueryClient) : Promise<PokedexType> {
     
