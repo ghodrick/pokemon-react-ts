@@ -15,7 +15,7 @@ const PokemonCardStats = ({stats} : PokemonCardStatsProps) => {
                 //Muestra las stats en barritas cuyo 100% es 255
                 stats.map(stat => (
                     <div key={`stat_${stat.nombre}`} className="flex items-center gap-2 font-mono">
-                        <span className="text-muted-foreground/40 text-sm">
+                        <span className="text-neutral-foreground-dark/40 text-sm">
                             {MAP_STATS[stat.nombre as keyof typeof MAP_STATS]}
                         </span>
                         <div className="relative w-full h-2 bg-primary/10 rounded-full overflow-hidden" title={stat.base.toString()}>

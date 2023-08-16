@@ -10,7 +10,7 @@ const MenuOption = ({data} : MenuOptionProps) => {
     const Icon = data.icon;
 
     return ( 
-        <li className="relative py-6 px-4 text-slate-500 group">
+        <li className="relative py-6 px-4 text-neutral group">
             <Link to={data.path} className="flex items-center gap-2 ">
                 <span>
                     <Icon className="text-3xl" />
