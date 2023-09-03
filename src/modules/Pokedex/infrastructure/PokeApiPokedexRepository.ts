@@ -57,7 +57,7 @@ export class PokeApiPokedexRepository implements PokedexRepository {
         return {
             id: pokemon.id,
             numero: pokemon.id,
-            nombre: pokemon.name,
+            nombre: pokemon.species.name,
             peso: pokemon.weight,
             tipos: pokemon.types.map((tipo) => this.transformaTipo(tipo)),
             estadisticas: pokemon.stats.map((stat: any) => this.transformaStat(stat)),

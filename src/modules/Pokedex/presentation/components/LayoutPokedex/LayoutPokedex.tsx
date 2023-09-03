@@ -1,4 +1,5 @@
-import { ReactChildren } from "../../../../models/React.types";
+import { ReactChildren } from "@/models/React.types";
+
 
 const LayoutPokedex: ReactChildren = ({children}) => {
     return (  

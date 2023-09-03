@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         errorElement: <RootError />,
         children: [
           {
-            path: "/pokedex",
+            path: "/",
             element: <PokedexPage />,
             loader: () => pokedexLoader(repositories.pokedex, queryClient),
           }

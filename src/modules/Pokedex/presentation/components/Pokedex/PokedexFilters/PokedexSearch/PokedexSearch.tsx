@@ -1,15 +1,20 @@
+import { useFormContext } from "react-hook-form";
 import { TbPokeball } from "react-icons/tb";
 
+
 const PokedexSearch = () => {
+    
+    const {register} = useFormContext();
+
     return (
         <div>
             <div className="relative w-full rounded-xl bg-white shadow-md shadow-slate-200">
                 <input
                     autoComplete="off"
                     type="text"
-                    name="buscador"
                     placeholder="Buscar pokémon"
                     className="peer/buscador w-full bg-transparent py-6 pl-8 pr-[74px] outline-none"
+                    {...register('search')}
                 />
                 <button
                     type="button"

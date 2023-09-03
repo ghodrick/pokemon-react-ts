@@ -1,3 +1,4 @@
+import { twMerge } from 'tailwind-merge';
 import { TipoPokemon as ITipoPokemon } from '../../models/Pokedex.types';
 import clsx from 'clsx';
 
@@ -5,10 +6,13 @@ interface PropsTipoPokemon {
     type: ITipoPokemon;
     showName?: boolean;
     rounded?: string;
-    className?: string;
+    classNames?: {
+        image?: string;
+        container?: string;
+    };
 }
 
-const TipoPokemon = ({type, showName = true, rounded = 'full', className = ''} : PropsTipoPokemon) => {
+const TipoPokemon = ({type, showName = true, rounded = 'full', classNames = {}} : PropsTipoPokemon) => {
 
     const classesTipoPokemon = clsx(
         'flex items-center gap-1 px-2 py-1 text-xs text-white shadow-xl',
@@ -36,21 +40,20 @@ const TipoPokemon = ({type, showName = true, rounded = 'full', className = ''} :
         type.id === 'rock' && 'bg-roca shadow-roca-lighter/50',
         type.id === 'steel' && 'bg-acero shadow-acero-lighter/50',
         type.id === 'water' && 'bg-agua shadow-agua-lighter/50',
-        showName ? 'min-w-[95px]' : '',
-        className
+        showName ? 'min-w-[95px]' : ''
     )
 
 
     return ( 
-        <div className={classesTipoPokemon}>
-            <div className='w-6 h-6'>
+        <div className={twMerge(classesTipoPokemon, classNames.container)}>
+            <div className={twMerge('w-6 h-6 shrink-0', classNames.image)}>
                 <img src={type.icono} alt={type.nombre} />
             </div>
             {
                 showName
                 ?
                 (
-                    <div className='font-semibold tracking-wide'>
+                    <div className='font-semibold tracking-wide truncate'>
                         {type.nombre}
                     </div>
                 )

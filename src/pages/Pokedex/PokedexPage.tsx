@@ -1,10 +1,10 @@
 import { useLoaderData } from "react-router-dom";
-import LayoutPokedex from "./components/LayoutPokedex/LayoutPokedex";
-import Pokedex from "./components/Pokedex/Pokedex";
-import { PokedexRepository } from "../../modules/Pokedex/domain/PokedexRepository";
-import { Pokedex as PokedexType } from "../../models/Pokedex.types";
-import { pokedexQuery } from "../../hooks/api/Pokedex/usePokedexList";
 import { QueryClient } from "@tanstack/react-query";
+import LayoutPokedex from "@/modules/Pokedex/presentation/components/LayoutPokedex/LayoutPokedex";
+import Pokedex from "@/modules/Pokedex/presentation/components/Pokedex/Pokedex";
+import { Pokedex as PokedexType} from "@/models/Pokedex.types";
+import { pokedexQuery } from "@/hooks/api/Pokedex/usePokedexList";
+import { PokedexRepository } from "@/modules/Pokedex/domain/PokedexRepository";
 
 /*
     TODO: Quizás esto, siguiendo la arquitectura hexagonal, debería estar en la capa de aplicación como getPokedex
@@ -29,10 +29,10 @@ const PokedexPage = () => {
 
     return (
         <LayoutPokedex>
-            <div className="md:col-span-12 lg:col-span-9">
+            <div className="lg:col-span-9 col-span-12">
                 <Pokedex data={pokedex} />
             </div>
-            <div className="md:hidden lg:flex lg:col-span-3">Hola</div>
+            <div className="hidden lg:flex lg:col-span-3">Hola</div>
         </LayoutPokedex>
     );
 };

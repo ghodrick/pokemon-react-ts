@@ -1,5 +1,6 @@
-import { MAP_STATS } from "../../../../config/constants";
-import { EstadisticasPokemon } from "../../../../models/Pokedex.types";
+import { MAP_STATS } from "@/config/constants";
+import { EstadisticasPokemon } from "@/models/Pokedex.types";
+
 
 interface PokemonCardStatsProps {
     stats: EstadisticasPokemon[];

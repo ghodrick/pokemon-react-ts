@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc && vite build --host",
+    "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -22,7 +22,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
     "react-icons": "^4.10.1",
-    "react-router-dom": "^6.10.0",
+    "react-router-dom": "^6.15.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.6",
     "uuid": "^9.0.0",

@@ -1,14 +1,14 @@
 import { ReactChildren } from '../../../models/React.types';
 import CirclesSVG from './CirclesSVG';
 import Footer from './Footer';
-import Header from './Header';
+import Header2 from './Header2';
 
 const Layout : ReactChildren = ({children}) => {
     return (
         <div className='App relative'>
             <CirclesSVG />
-            <div id='AppContainer' className='flex flex-col xl:pl-60 xl:pr-44 xl:pt-8'>
-                <Header className="flex-shrink-0" />
+            <div id='AppContainer' className='flex flex-col px-8 2xl:pl-60 2xl:pr-44 xl:pt-8'>
+                <Header2 className="flex-shrink-0" />
                 <section className='flex-1 py-8'>
                     {children}
                 </section>

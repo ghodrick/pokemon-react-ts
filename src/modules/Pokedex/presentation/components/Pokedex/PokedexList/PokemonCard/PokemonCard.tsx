@@ -1,8 +1,8 @@
 
 import TipoPokemon from "@/components/pokemon/TipoPokemon";
-import { PokedexPokemon } from "../../../../models/Pokedex.types";
-import PokemonCardStats from "../PokemonCardStats/PokemonCardStats";
+import PokemonCardStats from "./PokemonCardStats/PokemonCardStats";
 import { capitalize } from "@/helpers/string.helper";
+import { PokedexPokemon } from "@/models/Pokedex.types";
 
 interface PokemonCardProps {
     pokemon: PokedexPokemon;
