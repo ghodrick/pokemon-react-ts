@@ -1,3 +1,4 @@
+import Tooltip from "@/components/ui/Tooltip/Tooltip";
 import { MAP_STATS } from "@/config/constants";
 import { EstadisticasPokemon } from "@/models/Pokedex.types";
 
@@ -16,16 +17,20 @@ const PokemonCardStats = ({stats} : PokemonCardStatsProps) => {
                 //Muestra las stats en barritas cuyo 100% es 255
                 stats.map(stat => (
                     <div key={`stat_${stat.nombre}`} className="flex items-center gap-2 font-mono">
-                        <span className="text-neutral-foreground-dark/40 text-sm">
+                        <span className="text-neutral-foreground-dark/40 text-sm cursor-default">
                             {MAP_STATS[stat.nombre as keyof typeof MAP_STATS]}
                         </span>
-                        <div className="relative w-full h-2 bg-primary/10 rounded-full overflow-hidden" title={stat.base.toString()}>
-                            <div className="absolute top-0 left-0 h-full bg-primary" style={{width: `${stat.base / 255 * 100}%`}}></div>
-                        </div>
+                        <Tooltip title={stat.base.toString()} align="start" triggerAsChild>
+                            <div className="relative w-full h-2 bg-primary/10 rounded-full overflow-hidden">
+                                <div className="absolute top-0 left-0 h-full bg-primary" style={{width: `${stat.base / 255 * 100}%`}}></div>
+                            </div>
+                        </Tooltip>
                         <div className="min-w-[25px]">
                             {
                                 stat.puntosEsfuerzo > 0 && (
-                                    <span className="text-xs font-bold flex justify-center items-center font-mono text-amber-500">{stat.puntosEsfuerzo}EV</span>
+                                    <span className="text-xs font-bold flex justify-center items-center font-mono text-amber-500">
+                                        {stat.puntosEsfuerzo}EV
+                                    </span>
                                 )
                             }
                         </div>
