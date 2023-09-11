@@ -4,7 +4,7 @@ import { PokedexPokemon } from "@/models/Pokedex.types";
 import { normalizeString } from "@/helpers/string.helper";
 import { FormSearchValues } from "../models/types";
 
-export const usePokedexFilters = ({pokemons} : {pokemons: PokedexPokemon[]}) => {
+export const usePokedexFilters = ({pokemons, regiones} : {pokemons: PokedexPokemon[], regiones: string[]}) => {
 
     let [searchParams, setSearchParams] = useSearchParams();
 
@@ -12,24 +12,36 @@ export const usePokedexFilters = ({pokemons} : {pokemons: PokedexPokemon[]}) => 
 
     let tipos = searchParams.getAll("types");
 
-    const deferredSearch = useDeferredValue(buscador);
+    let region = searchParams.get('region');
 
-    const deferredTipos = useDeferredValue(tipos);
+
 
     let pokemonFilters: FormSearchValues = {
         search: buscador ?? '',
-        types: tipos ?? []
+        types: tipos ?? [],
+        region: region ?? 'kanto'
     };
+
+    const deferredSearch = useDeferredValue(pokemonFilters.search);
+
+    const deferredTipos = useDeferredValue(pokemonFilters.types);
+
+    const deferredRegion = useDeferredValue(pokemonFilters.region);
 
     let pokemonsFiltrados = useMemo(() => {
 
         let devolver: PokedexPokemon[] = pokemons;
 
+        if (deferredRegion && deferredSearch === '')
+        {
+            devolver = devolver.filter((pokemon) => pokemon.region.toLowerCase() === deferredRegion.toLowerCase());
+        }   
+
         if (deferredSearch)
         {
             const normalizedSearch = normalizeString(deferredSearch);
         
-            devolver = pokemons.filter((pokemon) => normalizeString(pokemon.nombre).includes(normalizedSearch));
+            devolver = devolver.filter((pokemon) => normalizeString(pokemon.nombre).includes(normalizedSearch));
             
         }
 
@@ -40,7 +52,7 @@ export const usePokedexFilters = ({pokemons} : {pokemons: PokedexPokemon[]}) => 
 
         return devolver;
 
-    }, [deferredSearch, pokemons, deferredTipos])
+    }, [deferredSearch, pokemons, deferredTipos, deferredRegion])
 
 
     return {

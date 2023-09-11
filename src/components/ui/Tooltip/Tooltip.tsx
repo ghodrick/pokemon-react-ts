@@ -4,12 +4,12 @@ import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 
 interface TooltipProps extends Omit<React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>, 'title'>{
     children: ReactNode;
-    triggerAsChild: boolean;
+    triggerAsChild?: boolean;
     title: ReactNode;
     
 }
 
-const Tooltip = ({children, title, triggerAsChild, ...props} : TooltipProps) => {
+const Tooltip = ({children, title, triggerAsChild = false, ...props} : TooltipProps) => {
 
 
     return (

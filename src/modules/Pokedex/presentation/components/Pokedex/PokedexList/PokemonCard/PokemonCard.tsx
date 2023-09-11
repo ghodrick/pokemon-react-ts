@@ -3,19 +3,22 @@ import TipoPokemon from "@/components/pokemon/TipoPokemon";
 import PokemonCardStats from "./PokemonCardStats/PokemonCardStats";
 import { capitalize } from "@/helpers/string.helper";
 import { PokedexPokemon } from "@/models/Pokedex.types";
+import { ImagenPokemonType } from "@/modules/Pokedex/presentation/models/types";
 
 interface PokemonCardProps {
     pokemon: PokedexPokemon;
+    tipoImagen?: ImagenPokemonType;
 }
 
-const PokemonCard = ({pokemon} : PokemonCardProps) => {
+const PokemonCard = ({pokemon, tipoImagen = 'normal'} : PokemonCardProps) => {
 
+    let imagenUsar = tipoImagen === 'normal' ? pokemon.imagen.normal : pokemon.imagen.shiny;
 
     return ( 
         <div className={'flex flex-col bg-card rounded-lg py-4 space-y-2 overflow-hidden shadow-xl shadow-neutral-200 px-4'}>
             <div className="flex justify-center relative">
                 <div className="w-52 h-52">
-                    <img src={pokemon.imagen.normal} alt={pokemon.nombre} className="select-none" />
+                    <img src={imagenUsar} alt={pokemon.nombre} className="select-none" />
                 </div>
                 <span className="absolute right-1 font-semibold text-neutral-foreground-dark">Nº {pokemon.numero}</span>
             </div>

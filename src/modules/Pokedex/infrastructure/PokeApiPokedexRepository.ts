@@ -1,6 +1,6 @@
 import axiosApi from "../../../config/axios";
 import { EstadisticasPokemon, Pokedex, PokedexPokemon, TipoPokemon } from "../../../models/Pokedex.types";
-import { PokedexApiResponse, PokemonApiResponse, PokeApiStat, PokeApiType } from "../domain/PokeApiPokedex.types";
+import { PokemonApiResponse, PokeApiStat, PokeApiType, GenerationListResponse, GenerationDataResponse } from "../domain/PokeApiPokedex.types";
 import { PokedexRepository } from "../domain/PokedexRepository";
 import { TIPOS_POKEMON } from "../../../config/constants";
 
@@ -10,28 +10,60 @@ export class PokeApiPokedexRepository implements PokedexRepository {
 
     async getPokedex() {
 
-        const url = `${this.baseUrl}pokedex/national/`;
+        const url = `${this.baseUrl}generation`;
 
-        const {data: datosPokedex} : {data: PokedexApiResponse} = await axiosApi.get(url);
+        const {data: listadoRecursosGeneraciones} : {data: GenerationListResponse} = await axiosApi.get(url);
 
-        const promises: Promise<any>[] = [];
-
-        if (datosPokedex)
+        if (listadoRecursosGeneraciones)
         {
+
             const devolver: Pokedex = {
-                nombre: datosPokedex.name,
-                pokemons: []
+                nombre: '',
+                pokemons: [],
+                regiones: []
             }
-            
-            datosPokedex.pokemon_entries.forEach((pokemon) => {
 
-                const urlPokemon = `${this.baseUrl}pokemon/${pokemon.entry_number}`;
+            const promises: Promise<any>[] = [];
 
-                const promise = axiosApi.get(urlPokemon);
+            let promisesGeneraciones: Promise<any>[] = [];
 
-                promises.push(promise);
+            listadoRecursosGeneraciones.results.forEach((resultado) => {
 
+                promisesGeneraciones.push(axiosApi.get(resultado.url));
             });
+
+            let resultadosGeneraciones = await Promise.all(promisesGeneraciones);
+
+            let regionMap = new Map<string, string>();
+
+            resultadosGeneraciones.forEach(resultadoGeneracion => {
+
+                const {data: datosGeneracion} : {data: GenerationDataResponse} = resultadoGeneracion;
+
+                let regionPokemon = datosGeneracion.main_region.name;
+
+                devolver.regiones.push(regionPokemon);
+
+                datosGeneracion.pokemon_species.forEach((pokemon) => {
+
+                    //Extraemos el ID de la url
+                    let urlSplit = pokemon.url.split("/");
+
+                    let posicionID = urlSplit.length - 2;
+
+                    if (urlSplit[posicionID])
+                    {
+
+                        regionMap.set(urlSplit[posicionID], regionPokemon);
+
+                        const urlPokemon = `${this.baseUrl}pokemon/${urlSplit[posicionID]}`;
+        
+                        promises.push(axiosApi.get(urlPokemon));
+
+                    }
+    
+                });
+            })
 
             const results = await Promise.all(promises);
 
@@ -39,10 +71,13 @@ export class PokeApiPokedexRepository implements PokedexRepository {
 
                 const {data: pokemonApi} : {data: PokemonApiResponse} = result;
 
-                const pokemon = this.transformaPokedexPokemon(pokemonApi);
+                const pokemon = this.transformaPokedexPokemon(pokemonApi, regionMap);
 
                 devolver.pokemons.push(pokemon);
             });
+
+            //Ordenamos los resultados
+            devolver.pokemons = devolver.pokemons.sort((a, b) => a.numero - b.numero);
 
             return devolver;
         }
@@ -52,10 +87,12 @@ export class PokeApiPokedexRepository implements PokedexRepository {
         
     }
 
-    private transformaPokedexPokemon = (pokemon : PokemonApiResponse) : PokedexPokemon => { 
+    private transformaPokedexPokemon = (pokemon : PokemonApiResponse, regionMap: Map<string, string>) : PokedexPokemon => { 
     
+
         return {
             id: pokemon.id,
+            region: regionMap.get(pokemon.id.toString()) ?? '',
             numero: pokemon.id,
             nombre: pokemon.species.name,
             peso: pokemon.weight,

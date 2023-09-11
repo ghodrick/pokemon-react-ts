@@ -1,10 +1,12 @@
 export interface Pokedex {
     nombre: string;
     pokemons: PokedexPokemon[];
+    regiones: string[];
 }
 
 export interface PokedexPokemon {
     id: number;
+    region: string;
     numero: number;
     nombre: string;
     peso: number;

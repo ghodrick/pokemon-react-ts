@@ -1,3 +1,38 @@
+export interface GenerationListResponse {
+    count:    number;
+    next:     null;
+    previous: null;
+    results:  GenerationResults[];
+}
+   
+export interface GenerationResults {
+    name: string;
+    url:  string;
+}
+
+export interface GenerationDataResponse {
+    abilities:       any[];
+    id:              number;
+    main_region:     MainRegion;
+    moves:           MainRegion[];
+    name:            string;
+    names:           Name[];
+    pokemon_species: MainRegion[];
+    types:           MainRegion[];
+    version_groups:  MainRegion[];
+   }
+   
+   export interface MainRegion {
+    name: string;
+    url:  string;
+   }
+   
+   export interface Name {
+    language: MainRegion;
+    name:     string;
+   }
+   
+
 export interface PokedexApiResponse {
     descriptions: PokeApiDescription[];
     id: number;

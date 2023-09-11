@@ -5,6 +5,7 @@ import Pokedex from "@/modules/Pokedex/presentation/components/Pokedex/Pokedex";
 import { Pokedex as PokedexType} from "@/models/Pokedex.types";
 import { pokedexQuery } from "@/hooks/api/Pokedex/usePokedexList";
 import { PokedexRepository } from "@/modules/Pokedex/domain/PokedexRepository";
+import PokedexContextProvider from "@/modules/Pokedex/presentation/contexts/usePokedexContext";
 
 /*
     TODO: Quizás esto, siguiendo la arquitectura hexagonal, debería estar en la capa de aplicación como getPokedex
@@ -28,12 +29,14 @@ const PokedexPage = () => {
     const pokedex = useLoaderData() as PokedexType;
 
     return (
-        <LayoutPokedex>
-            <div className="lg:col-span-9 col-span-12">
-                <Pokedex data={pokedex} />
-            </div>
-            <div className="hidden lg:flex lg:col-span-3">Hola</div>
-        </LayoutPokedex>
+        <PokedexContextProvider>
+            <LayoutPokedex>
+                <div className="lg:col-span-9 col-span-12">
+                    <Pokedex data={pokedex} />
+                </div>
+                <div className="hidden lg:flex lg:col-span-3">Hola</div>
+            </LayoutPokedex>
+        </PokedexContextProvider>
     );
 };
 

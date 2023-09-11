@@ -16,25 +16,27 @@ const PokemonCardStats = ({stats} : PokemonCardStatsProps) => {
             {
                 //Muestra las stats en barritas cuyo 100% es 255
                 stats.map(stat => (
-                    <div key={`stat_${stat.nombre}`} className="flex items-center gap-2 font-mono">
-                        <span className="text-neutral-foreground-dark/40 text-sm cursor-default">
-                            {MAP_STATS[stat.nombre as keyof typeof MAP_STATS]}
-                        </span>
-                        <Tooltip title={stat.base.toString()} align="start" triggerAsChild>
-                            <div className="relative w-full h-2 bg-primary/10 rounded-full overflow-hidden">
-                                <div className="absolute top-0 left-0 h-full bg-primary" style={{width: `${stat.base / 255 * 100}%`}}></div>
+                    <Tooltip key={`stat_${stat.nombre}`} title={stat.base.toString()} align="start" triggerAsChild>
+                        <div className="flex items-center gap-2 font-mono">
+                            <span className="text-neutral-foreground-dark/40 text-sm cursor-default">
+                                {MAP_STATS[stat.nombre as keyof typeof MAP_STATS]}
+                            </span>
+                            
+                                <div className="relative w-full h-2 bg-secondary/10 rounded-full overflow-hidden">
+                                    <div className="absolute top-0 left-0 h-full bg-secondary" style={{width: `${stat.base / 255 * 100}%`}}></div>
+                                </div>
+                        
+                            <div className="min-w-[25px]">
+                                {
+                                    stat.puntosEsfuerzo > 0 && (
+                                        <span className="text-xs font-bold flex justify-center items-center font-mono text-amber-500">
+                                            {stat.puntosEsfuerzo}EV
+                                        </span>
+                                    )
+                                }
                             </div>
-                        </Tooltip>
-                        <div className="min-w-[25px]">
-                            {
-                                stat.puntosEsfuerzo > 0 && (
-                                    <span className="text-xs font-bold flex justify-center items-center font-mono text-amber-500">
-                                        {stat.puntosEsfuerzo}EV
-                                    </span>
-                                )
-                            }
                         </div>
-                    </div>
+                    </Tooltip>
                 ))
             }
         </div>
