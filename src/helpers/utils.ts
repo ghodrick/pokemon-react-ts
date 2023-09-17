@@ -10,3 +10,8 @@ export function getRandomInt(min: number, max: number) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
 }
+
+export function leftZeros(numero: number, cantidadCeros: number) {
+
+  return numero.toString().padStart(cantidadCeros, '0');
+}

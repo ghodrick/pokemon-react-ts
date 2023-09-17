@@ -15,8 +15,10 @@ export interface PokedexPokemon {
     imagen: ImagenPokemonPokedex;
 }
 
+export type PokemonTypeVariants = 'bug' | 'dark' | 'dragon' | 'electric' | 'fairy' | 'fighting' | 'fire' | 'flying' | 'ghost' | 'grass' | 'ground' | 'ice' | 'normal' | 'poison' | 'psychic' | 'rock' | 'steel' | 'water';
+
 export interface TipoPokemon {
-    id: string;
+    id: PokemonTypeVariants;
     nombre: string;
     icono: string;
     color: string;

@@ -26,10 +26,12 @@ const Pokedex = ({ data }: PropsPokedex) => {
                 tipoImagen={pokedexState.tipo_imagen}
                 onShinyButtonClick={togglePokemonImage}
             />
+
             <PokedexList 
                 pokemons={pokemonsFiltrados} 
                 tipoImagen={pokedexState.tipo_imagen}
             />
+
         </div>
     );
 };
