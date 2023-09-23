@@ -3,6 +3,7 @@ import { capitalize } from "@/helpers/string.helper";
 import { leftZeros } from "@/helpers/utils";
 import { PokedexPokemon } from "@/models/Pokedex.types";
 import { cva } from "class-variance-authority";
+import { AnimatePresence, motion } from "framer-motion";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { twMerge } from "tailwind-merge";
 
@@ -10,7 +11,7 @@ import { twMerge } from "tailwind-merge";
 
 const pokemonContainerClasses = cva(
     [
-        "bg-gradient-to-br border-4 border-container/50 p-6 rounded-2xl"
+        "w-full bg-gradient-to-br border-4 border-container/50 p-6 rounded-2xl"
     ],
     {
         variants: {
@@ -110,17 +111,25 @@ const PokedexSidebar = ({pokemon, onNextPokemonClick, onPrevPokemonClick} : Poke
                         <LuChevronRight />
                     </button>
                 </div>
-                <div className="w-full px-10">
-                    <img src={pokemon.imagen.normal} alt={pokemon.nombre} />
+                <div className="w-full px-10 min-h-[212px]">
+                    <AnimatePresence initial={false}>
+                        <motion.img key={pokemon.id}
+                            initial={{opacity: 0, y: 50}}
+                            animate={{opacity: 1, y: 0}}
+                            transition={{bounce: 0.8}}
+                            src={pokemon.imagen.normal} alt={pokemon.nombre} 
+                        />
+                    </AnimatePresence>
                 </div>
                 <div className="text-center font-bold text-neutral-800">
                     {capitalize(pokemon.nombre)}
                 </div>
-                <div className="flex gap-2 justify-center">
+
+                <motion.div initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} key={pokemon.id} layout className="flex gap-2 justify-center">
                     {
                         pokemon.tipos.map((tipo) => <TipoPokemon key={`tipo_${pokemon.id}_${tipo.id}`} type={tipo} />)
                     }
-                </div>
+                </motion.div>
             </div>
 
         </div>

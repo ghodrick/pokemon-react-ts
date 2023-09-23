@@ -1,4 +1,5 @@
-import { Pokedex } from "../../../models/Pokedex.types";
+
+import { Pokedex } from "@/models/Pokedex.types";
 
 export interface PokedexRepository {
     getPokedex(): Promise<Pokedex>;

@@ -10,6 +10,7 @@ export interface PokedexPokemon {
     numero: number;
     nombre: string;
     peso: number;
+    altura: number;
     tipos: TipoPokemon[];
     estadisticas: EstadisticasPokemon[];
     imagen: ImagenPokemonPokedex;

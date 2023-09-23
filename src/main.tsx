@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import RepositoryProvider from "./contexts/RepositoryProvider/RepositoryProvider";
 import { queryClientConfig } from "./config/react-query";
+import PokemonPage, { loader as pokemonLoader } from "./pages/Pokemon/PokemonPage";
 
 const queryClient = new QueryClient(queryClientConfig);
 /*
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
             path: "/",
             element: <PokedexPage />,
             loader: () => pokedexLoader(repositories.pokedex, queryClient),
+          },
+          {
+            path: '/pokemon/:id',
+            element: <PokemonPage />,
+            loader: () => pokemonLoader(repositories.pokedex, queryClient)
           }
         ]
     },
