@@ -1,16 +1,17 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
+import { queryClientConfig } from "./config/react-query";
+import RepositoryProvider from "./contexts/RepositoryProvider/RepositoryProvider";
 import "./index.css";
-import RootError from "./pages/Errors/RootError";
-import PokedexPage, { loader as pokedexLoader } from "./pages/Pokedex/PokedexPage";
 import './interceptors/axios.interceptors';
 import { PokeApiPokedexRepository } from "./modules/Pokedex/infrastructure/PokeApiPokedexRepository";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import RepositoryProvider from "./contexts/RepositoryProvider/RepositoryProvider";
-import { queryClientConfig } from "./config/react-query";
+import { PokeApiPokemonRepository } from "./modules/Pokemon/infrastructure/PokeApiPokemonRepository";
+import RootError from "./pages/Errors/RootError";
+import PokedexPage, { loader as pokedexLoader } from "./pages/Pokedex/PokedexPage";
 import PokemonPage, { loader as pokemonLoader } from "./pages/Pokemon/PokemonPage";
 
 const queryClient = new QueryClient(queryClientConfig);
@@ -19,7 +20,8 @@ const queryClient = new QueryClient(queryClientConfig);
   para que pueda ser consumido por los custom hooks de React Query
 */
 const repositories = {
-    pokedex: new PokeApiPokedexRepository()
+    pokedex: new PokeApiPokedexRepository(),
+    pokemon: new PokeApiPokemonRepository()
 }
 
 
@@ -43,7 +45,7 @@ const router = createBrowserRouter([
           {
             path: '/pokemon/:id',
             element: <PokemonPage />,
-            loader: () => pokemonLoader(repositories.pokedex, queryClient)
+            loader: ({params}) => pokemonLoader(params.id, repositories.pokemon, queryClient)
           }
         ]
     },

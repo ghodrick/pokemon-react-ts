@@ -7,7 +7,7 @@ const Layout : ReactChildren = ({children}) => {
     return (
         <div className='App relative'>
             <CirclesSVG />
-            <div id='AppContainer' className='flex flex-col px-8 2xl:pl-60 2xl:pr-44 xl:pt-8'>
+            <div id='AppContainer' className='flex gap-12 flex-col 2xl:pl-60 2xl:pr-44'>
                 <Header2 className="flex-shrink-0" />
                 <section className='flex-1 py-8'>
                     {children}

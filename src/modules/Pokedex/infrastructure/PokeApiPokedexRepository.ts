@@ -1,8 +1,11 @@
-import axiosApi from "../../../config/axios";
-import { EstadisticasPokemon, Pokedex, PokedexPokemon, TipoPokemon } from "../../../models/Pokedex.types";
-import { PokemonApiResponse, PokeApiStat, PokeApiType, GenerationListResponse, GenerationDataResponse } from "../domain/PokeApiPokedex.types";
+
+import { PokemonApiResponse, GenerationListResponse, GenerationDataResponse } from "../domain/PokeApiPokedex.types";
 import { PokedexRepository } from "../domain/PokedexRepository";
-import { TIPOS_POKEMON } from "../../../config/constants";
+import { getGenerations } from "@/api/generation/generationApi";
+import { getPokemon } from "@/api/pokemon/pokemonApi";
+import { transformaPokedexPokemon } from "./adapters/pokedex.adapter";
+import { Pokedex } from "@/models/Pokedex.types";
+import axiosApi from "@/config/axios";
 
 
 export class PokeApiPokedexRepository implements PokedexRepository {
@@ -11,9 +14,7 @@ export class PokeApiPokedexRepository implements PokedexRepository {
 
     async getPokedex() {
 
-        const url = `${this.baseUrl}generation`;
-
-        const {data: listadoRecursosGeneraciones} : {data: GenerationListResponse} = await axiosApi.get(url);
+        const {data: listadoRecursosGeneraciones} : {data: GenerationListResponse} = await getGenerations();
 
         if (listadoRecursosGeneraciones)
         {
@@ -26,12 +27,7 @@ export class PokeApiPokedexRepository implements PokedexRepository {
 
             let promisesPokemons: Promise<PokemonApiResponse>[] = [];
 
-            let promisesGeneraciones: Promise<any>[] = [];
-
-            listadoRecursosGeneraciones.results.forEach((resultado) => {
-
-                promisesGeneraciones.push(axiosApi.get(resultado.url));
-            });
+            let promisesGeneraciones: Promise<any>[] = listadoRecursosGeneraciones.results.map(resultado => axiosApi.get(resultado.url));
 
             let resultadosGeneraciones = await Promise.all(promisesGeneraciones);
 
@@ -57,7 +53,7 @@ export class PokeApiPokedexRepository implements PokedexRepository {
 
                         regionMap.set(urlSplit[posicionID], regionPokemon);
         
-                        promisesPokemons.push(this.getBasicPokemonData(parseInt(urlSplit[posicionID])));
+                        promisesPokemons.push(getPokemon(parseInt(urlSplit[posicionID])));
 
                     }
     
@@ -66,13 +62,7 @@ export class PokeApiPokedexRepository implements PokedexRepository {
 
             const results = await Promise.all(promisesPokemons);
 
-            results.forEach((pokemonApi) => {
-
-                const pokemon = this.transformaPokedexPokemon(pokemonApi, regionMap);
-
-                devolver.pokemons.push(pokemon);
-            });
-
+            devolver.pokemons = results.map(pokemonApi => transformaPokedexPokemon(pokemonApi, regionMap));
             //Ordenamos los resultados
             devolver.pokemons = devolver.pokemons.sort((a, b) => a.numero - b.numero);
 
@@ -82,55 +72,5 @@ export class PokeApiPokedexRepository implements PokedexRepository {
         throw new Error('No se pudo obtener la pokedex');
         
         
-    }
-    //TODO: Controlar errores
-    async getBasicPokemonData(idPokemon : number) {
-        
-        let url = `${this.baseUrl}pokemon/${idPokemon}`;
-
-        const {data: pokemonApi} : {data: PokemonApiResponse} = await axiosApi.get(url);
-
-        return pokemonApi;
-
-    }
-
-    private transformaPokedexPokemon = (pokemon : PokemonApiResponse, regionMap: Map<string, string>) : PokedexPokemon => { 
-    
-
-        return {
-            id: pokemon.id,
-            region: regionMap.get(pokemon.id.toString()) ?? '',
-            numero: pokemon.id,
-            nombre: pokemon.species.name,
-            peso: pokemon.weight,
-            altura: pokemon.height,
-            tipos: pokemon.types.map((tipo) => this.transformaTipo(tipo)),
-            estadisticas: pokemon.stats.map((stat: any) => this.transformaStat(stat)),
-            imagen: {
-                normal: (pokemon.sprites.other?.['official-artwork'].front_default) || '',
-                shiny: pokemon.sprites.other?.['official-artwork'].front_shiny || ''
-            }
-        }
-        
-    }
-
-    private transformaStat = (stat: PokeApiStat) : EstadisticasPokemon => {
-        return {
-            nombre: stat.stat.name,
-            base: stat.base_stat,
-            puntosEsfuerzo: stat.effort
-        }
-    }
-
-    private transformaTipo = (tipo : PokeApiType) : TipoPokemon => {
-    
-        const nombreTipo = tipo.type.name as keyof typeof TIPOS_POKEMON;
-    
-        return {
-            id: nombreTipo,
-            nombre: TIPOS_POKEMON[nombreTipo].nombre,
-            icono: TIPOS_POKEMON[nombreTipo].icono,
-            color: TIPOS_POKEMON[nombreTipo].color,
-        }
     }
 }

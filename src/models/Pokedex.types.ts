@@ -56,3 +56,47 @@ export interface PokemonTypes {
     steel: Omit<TipoPokemon, 'id'>;
     water: Omit<TipoPokemon, 'id'>;
 }
+
+export type HabilidadPokemon = {
+    nombre: string;
+    oculta: boolean;
+    descripcion: string;
+}
+
+type DescripcionPokedex = {
+    descripcion: string;
+    version: string;
+}
+
+export type GeneroPokemon = 'macho' | 'hembra';
+
+export type ItemEvolution = {
+    nombre: string;
+    imagen: string | null;
+}
+
+export type TiempoDelDia = 'día' | 'noche';
+
+export type DetalleEvolucion = {
+    nivel: number | null;
+    genero: GeneroPokemon | null;
+    item: ItemEvolution | null;
+    felicidad: number | null;
+    tiempoDelDia: TiempoDelDia | null;
+    portandoItem: ItemEvolution | null;
+    tipoEvolucion: string | null;
+}
+
+export type PokemonEvolutions = {
+    nombre: string;
+    detallesEvolucion: DetalleEvolucion | null;
+    imagen: string | null;
+    evoluciona: PokemonEvolutions[] | null;
+}
+export interface Pokemon extends PokedexPokemon {
+    habilidades: HabilidadPokemon[];
+    descripcionPokedex: DescripcionPokedex | null;
+    pokemonPrev: PokedexPokemon;
+    pokemonNext: PokedexPokemon;
+    evoluciones: PokemonEvolutions | null;
+}

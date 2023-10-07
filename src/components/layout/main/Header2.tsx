@@ -9,11 +9,11 @@ interface Header2Props {
 const Header2 = ({className = ''} : Header2Props) => {
 
     return (
-        <div className={twMerge(`flex flex-col items-center ${className}`)}>
+        <header className={twMerge(`flex flex-col py-3 ${className}`)}>
             <div>
-                <Logo className="w-[300px] pt-8 md:w-[500px] px-4 transition-all duration-200" />
+                <Logo className="w-[100px] md:w-[200px] px-4 transition-all duration-200" />
             </div>
-        </div>
+        </header>
     )
 
 }
