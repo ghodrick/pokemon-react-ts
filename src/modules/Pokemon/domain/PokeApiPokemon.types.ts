@@ -211,3 +211,90 @@ export interface Ability {
     default: string;
    }
    
+   export interface PokeApiMovement {
+    accuracy:             number;
+    contest_combos:       null;
+    contest_effect:       PokeApiMoveContestEffect;
+    contest_type:         PokeApiMoveContestType;
+    damage_class:         PokeApiMoveDamageType;
+    effect_chance:        null;
+    effect_changes:       any[];
+    effect_entries:       PokeApiMoveEffectEntry[];
+    flavor_text_entries:  PokeApiMoveFlavorTextEntry[];
+    generation:           PokeApiMoveContestType;
+    id:                   number;
+    learned_by_pokemon:   PokeApiMoveContestType[];
+    machines:             PokeApiMoveMachine[];
+    meta:                 PokeApiMoveMeta;
+    name:                 string;
+    names:                PokeApiMoveName[];
+    past_values:          PokeApiMovePastValue[];
+    power:                number;
+    pp:                   number;
+    priority:             number;
+    stat_changes:         any[];
+    super_contest_effect: PokeApiMoveContestEffect;
+    target:               PokeApiMoveContestType;
+    type:                 PokeApiMoveContestType;
+   }
+   
+   export interface PokeApiMoveDamageType {
+    name: 'status' | 'special' | 'physical';
+    url: string;
+   }
+   export interface PokeApiMoveContestEffect {
+    url: string;
+   }
+   
+   export interface PokeApiMoveContestType {
+    name: string;
+    url:  string;
+   }
+   
+   export interface PokeApiMoveEffectEntry {
+    effect:       string;
+    language:     PokeApiMoveContestType;
+    short_effect: string;
+   }
+   
+   export interface PokeApiMoveFlavorTextEntry {
+    flavor_text:   string;
+    language:      PokeApiMoveContestType;
+    version_group: PokeApiMoveContestType;
+   }
+   
+   export interface PokeApiMoveMachine {
+    machine:       PokeApiMoveContestEffect;
+    version_group: PokeApiMoveContestType;
+   }
+   
+   export interface PokeApiMoveMeta {
+    ailment:        PokeApiMoveContestType;
+    ailment_chance: number;
+    category:       PokeApiMoveContestType;
+    crit_rate:      number;
+    drain:          number;
+    flinch_chance:  number;
+    healing:        number;
+    max_hits:       null;
+    max_turns:      null;
+    min_hits:       null;
+    min_turns:      null;
+    stat_chance:    number;
+   }
+   
+   export interface PokeApiMoveName {
+    language: PokeApiMoveContestType;
+    name:     string;
+   }
+   
+   export interface PokeApiMovePastValue {
+    accuracy:       number;
+    effect_chance:  null;
+    effect_entries: any[];
+    power:          null;
+    pp:             null;
+    type:           null;
+    version_group:  PokeApiMoveContestType;
+   }
+   

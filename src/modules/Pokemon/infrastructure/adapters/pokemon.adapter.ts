@@ -1,10 +1,12 @@
 import { getItemFromURL } from "@/api/items/itemsApi";
+import { getMoveFromUrl } from "@/api/moves/movesApi";
 import { getPokemonFromURL } from "@/api/pokemon/pokemonApi";
 import { regionMapFromGenerationData } from "@/helpers/utils";
-import { DetalleEvolucion, GeneroPokemon, HabilidadPokemon, ItemEvolution, Pokemon, PokemonEvolutions, TiempoDelDia } from "@/models/Pokedex.types";
-import { GenerationDataResponse, PokemonApiResponse } from "@/modules/Pokedex/domain/PokeApiPokedex.types";
+import { DetalleEvolucion, GeneroPokemon, HabilidadPokemon, ItemEvolution, MovimientoPokemon, Pokemon, PokemonEvolutions, PokemonTypeVariants, TiempoDelDia } from "@/models/Pokedex.types";
+import { GenerationDataResponse, PokeApiMove, PokemonApiResponse } from "@/modules/Pokedex/domain/PokeApiPokedex.types";
 import { transformaPokedexPokemon } from "@/modules/Pokedex/infrastructure/adapters/pokedex.adapter";
-import { Ability, EvoChain, EvolutionDetail, PokeApiEvolutionChain, PokeApiItem, PokemonSpecies } from "../../domain/PokeApiPokemon.types";
+import { isEmpty } from 'lodash';
+import { Ability, EvoChain, EvolutionDetail, PokeApiEvolutionChain, PokeApiItem, PokeApiMovement, PokemonSpecies } from "../../domain/PokeApiPokemon.types";
 
 interface transformaPokedexPokemonAPIProps {
     datosPokemon: PokemonApiResponse;
@@ -30,13 +32,16 @@ export const transformaPokemonFromAPI = async ({datosPokemon, habilidades, datos
 
     let evoluciones = datosEvolucion ? await obtenerEvoluciones(datosEvolucion.chain) : null;
 
+    let movimientos = await obtenerMovimientos(datosPokemon.moves);
+
     return {
         ...pokemon,
         descripcionPokedex: descripcionPokedex,
         habilidades: habilidadesPokemon,
         pokemonNext: transformaPokedexPokemon(prevAndNext.pokemonNext, regionMap),
         pokemonPrev: transformaPokedexPokemon(prevAndNext.pokemonPrev, regionMap),
-        evoluciones: evoluciones
+        evoluciones: evoluciones,
+        movimientos: movimientos
     };
     
 }
@@ -107,8 +112,12 @@ async function obtenerEvoluciones(nodo : EvoChain) : Promise<PokemonEvolutions> 
 
     const evoluciones = await Promise.all(nodo.evolves_to.map(obtenerEvoluciones));
 
+    let urlPokemonArray = nodo.species.url.split('/');
+    
+    let id = urlPokemonArray[urlPokemonArray.length - 2];
 
     return {
+        id: id,
         nombre: nodo.species.name,
         detallesEvolucion: detallesEvolucion ? await obtenerDetalleEvolucion(detallesEvolucion) : null,
         imagen: datosEvolucion.sprites.other?.['official-artwork'].front_default || null,
@@ -233,6 +242,102 @@ export const transformaItemToEvolutionItem = (item: PokeApiItem) => {
         devolver.nombre = nombreSpanish.name;
 
         devolver.imagen = item.sprites.default;
+    }
+
+    return devolver;
+}
+
+export const obtenerMovimientos = async (movimientos: PokeApiMove[]) => {
+
+    let devolver = [];
+
+    let datosMovimientos = await Promise.all(movimientos.map(movimiento => getMoveFromUrl(movimiento.move.url)))
+
+    devolver = datosMovimientos.map(movimiento => {
+
+        
+        let movimientoPokemon = movimientos.find(mov => {
+
+            let urlSplit = mov.move.url.split("/");
+
+            let id = parseInt(urlSplit[urlSplit.length - 2]);
+
+            return movimiento.id === id;
+        })
+
+        return transformaMovimiento(movimiento, movimientoPokemon);
+    })
+
+    return devolver;
+}
+
+export const transformaMovimiento = (movimiento: PokeApiMovement, movimientoPokemon: PokeApiMove | null = null) : MovimientoPokemon => {
+
+    let nombre = movimiento.name;
+
+    let metodoAprendizaje = '';
+
+    let descripcion = '';
+
+    let nivel = 0;
+
+    //Buscamos el nombre español
+    let nombreSpanish = movimiento.names ? movimiento.names.find(movimientoLang => movimientoLang.language.name === "es") : null;
+
+    if (nombreSpanish)
+    {
+        nombre = nombreSpanish.name;
+    }
+
+    let descripcionSpanish = movimiento.flavor_text_entries.findLast(textEntry => textEntry.language.name === "es");
+
+    if (descripcionSpanish)
+    {
+        descripcion = descripcionSpanish.flavor_text.replaceAll('\n', '');
+    }
+
+    //Buscamos la descripción en español
+
+    if (movimientoPokemon && !isEmpty(movimientoPokemon.version_group_details))
+    {
+        let detalleVersion = movimientoPokemon.version_group_details[movimientoPokemon.version_group_details.length - 1];
+
+        metodoAprendizaje = parseMetodoAprendizaje(detalleVersion.move_learn_method.name);
+
+        nivel = detalleVersion.level_learned_at;
+    }
+
+    return {
+        nombre: nombre,
+        metodoAprendizaje: metodoAprendizaje,
+        nivel: nivel,
+        categoria: movimiento.damage_class.name,
+        precision: movimiento.accuracy,
+        poder: movimiento.power,
+        pp: movimiento.pp,
+        tipo: movimiento.type.name as PokemonTypeVariants,
+        descripcion: descripcion
+        
+    }
+
+}
+
+
+export const parseMetodoAprendizaje = (metodoAprendizaje: string) => {
+
+    let devolver = metodoAprendizaje;
+
+    switch(metodoAprendizaje) {
+
+        case 'egg':
+            devolver = 'huevo';
+            break;
+        case 'machine':
+            devolver = 'MT';
+            break;
+        case 'level-up':
+            devolver = 'nivel';
+            break;
     }
 
     return devolver;

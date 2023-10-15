@@ -25,6 +25,7 @@ export interface TipoPokemon {
     color: string;
 }
 
+
 export interface EstadisticasPokemon {
     nombre: string;
     base: number;
@@ -88,10 +89,23 @@ export type DetalleEvolucion = {
 }
 
 export type PokemonEvolutions = {
+    id: string;
     nombre: string;
     detallesEvolucion: DetalleEvolucion | null;
     imagen: string | null;
     evoluciona: PokemonEvolutions[] | null;
+}
+
+export type MovimientoPokemon = {
+    nombre: string;
+    tipo: PokemonTypeVariants;
+    categoria: 'status' | 'special' | 'physical';
+    metodoAprendizaje: string;
+    precision: number | null;
+    poder: number;
+    pp: number;
+    nivel: number;
+    descripcion: string;
 }
 export interface Pokemon extends PokedexPokemon {
     habilidades: HabilidadPokemon[];
@@ -99,4 +113,29 @@ export interface Pokemon extends PokedexPokemon {
     pokemonPrev: PokedexPokemon;
     pokemonNext: PokedexPokemon;
     evoluciones: PokemonEvolutions | null;
+    movimientos: MovimientoPokemon[]
+}
+
+export type PokemonTypeEffectiveness = {
+    [key in PokemonTypeVariants]: number;
+};
+
+export type PokemonTypeChart = {
+    [key in PokemonTypeVariants]: PokemonTypeEffectiveness;
+};
+
+export type ClaseAtaquesVariant = 'physical' | 'status' | 'special';
+
+export interface ClaseAtaqueObject {
+    nombre: string;
+    icono: string;
+}
+
+export type ClaseAtaque = {
+    [key in ClaseAtaquesVariant]: ClaseAtaqueObject;
+}
+
+export type PokemonTypeEffectivenessObject = {
+    tipo: PokemonTypeVariants;
+    valor: number;
 }

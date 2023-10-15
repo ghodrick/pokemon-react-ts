@@ -2,7 +2,7 @@ import { getAbilitiesFromURL } from "@/api/abilities/abilitiesApi";
 import { getEvolutionChainFromURL } from "@/api/evolution/evolutionApi";
 import { getGenerationFromURL } from "@/api/generation/generationApi";
 import { getPokemon, getPokemonSpeciesFromURL } from "@/api/pokemon/pokemonApi";
-import { getPokemonListWithoutVariants } from "@/helpers/apiHelper";
+import { getPokemonListWithoutVariants } from "@/helpers/api.helper";
 import { PokemonRepository } from "../domain/PokemonRepository";
 import { transformaPokemonFromAPI } from "./adapters/pokemon.adapter";
 
