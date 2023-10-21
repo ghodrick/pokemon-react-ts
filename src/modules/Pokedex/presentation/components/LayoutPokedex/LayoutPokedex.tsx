@@ -1,9 +1,11 @@
-import { ReactChildren } from "@/models/React.types";
+import { ReactNode } from "react";
 
-
-const LayoutPokedex: ReactChildren = ({children}) => {
+interface LayoutPokedexProps {
+    children: ReactNode;
+}
+const LayoutPokedex = ({children} : LayoutPokedexProps) => {
     return (  
-        <div className="grid grid-cols-12 gap-8 px-8">
+        <div className="grid sm:grid grid-cols-12 sm:gap-8 px-8">
             {children}
         </div>
     );

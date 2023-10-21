@@ -1,1 +1,1 @@
-export type ReactChildren = React.FC<{children: JSX.Element|JSX.Element[]}>;
+export type ClickEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;

@@ -1,7 +1,7 @@
-import { memo } from "react";
-import PokemonCard from "./PokemonCard/PokemonCard";
 import { PokedexPokemon } from "@/models/Pokedex.types";
+import { memo } from "react";
 import { ImagenPokemonType } from "../../../models/types";
+import PokemonCard from "./PokemonCard/PokemonCard";
 interface PropsPokedexList {
     pokemons: PokedexPokemon[];
     tipoImagen?: ImagenPokemonType;

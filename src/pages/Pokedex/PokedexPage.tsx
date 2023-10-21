@@ -1,13 +1,13 @@
-import { useLoaderData } from "react-router-dom";
-import { QueryClient } from "@tanstack/react-query";
+import { pokedexQuery } from "@/hooks/api/Pokedex/usePokedexList";
+import { Pokedex as PokedexType } from "@/models/Pokedex.types";
+import { PokedexRepository } from "@/modules/Pokedex/domain/PokedexRepository";
 import LayoutPokedex from "@/modules/Pokedex/presentation/components/LayoutPokedex/LayoutPokedex";
 import Pokedex from "@/modules/Pokedex/presentation/components/Pokedex/Pokedex";
-import { Pokedex as PokedexType} from "@/models/Pokedex.types";
-import { pokedexQuery } from "@/hooks/api/Pokedex/usePokedexList";
-import { PokedexRepository } from "@/modules/Pokedex/domain/PokedexRepository";
-import PokedexContextProvider from "@/modules/Pokedex/presentation/contexts/usePokedexContext";
 import PokedexSidebar from "@/modules/Pokedex/presentation/components/PokedexSidebar/PokedexSidebar";
+import PokedexContextProvider from "@/modules/Pokedex/presentation/contexts/usePokedexContext";
 import { usePokedexSidebar } from "@/modules/Pokedex/presentation/hooks/usePokedexSidebar";
+import { QueryClient } from "@tanstack/react-query";
+import { useLoaderData } from "react-router-dom";
 
 /*
     TODO: Quizás esto, siguiendo la arquitectura hexagonal, debería estar en la capa de aplicación como getPokedex
@@ -35,12 +35,12 @@ const PokedexPage = () => {
     return (
         <PokedexContextProvider>
             <LayoutPokedex>
-                <div className="lg:col-span-9 col-span-12">
+                <main className="lg:col-span-9 col-span-12">
                     <Pokedex data={pokedex} />
-                </div>
-                <div className="hidden lg:flex lg:col-span-3 items-start">
+                </main>
+                <aside className="hidden lg:flex lg:col-span-3 items-start">
                     <PokedexSidebar pokemon={pokemonActual} onNextPokemonClick={goNextPokemon} onPrevPokemonClick={goPrevPokemon} />
-                </div>
+                </aside>
             </LayoutPokedex>
         </PokedexContextProvider>
     );

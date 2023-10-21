@@ -1,11 +1,11 @@
 import { Combobox, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import FormLabel from "./FormLabel";
-import SelectValue from "./SelectValue";
-import SelectDropdown from "./SelectDropdown";
-import SelectContext from "./context/useSelect";
 import { cva } from "class-variance-authority";
+import { Fragment } from "react";
 import { FieldColors, FieldRound, FieldShadow, FieldSizes, FieldVariants } from "../../forms.props";
+import FormLabel from "./FormLabel";
+import SelectDropdown from "./SelectDropdown";
+import SelectValue from "./SelectValue";
+import SelectContext from "./context/useSelect";
 
 const comboboxButton = cva(
     [

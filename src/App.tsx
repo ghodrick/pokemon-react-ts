@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import Layout from "./components/layout/main/Layout";
 
 function App() {
@@ -6,6 +6,7 @@ function App() {
 
     return (
         <Layout>
+            <ScrollRestoration />
             <Outlet />
         </Layout>
     );

@@ -2,9 +2,11 @@ import TipoPokemon from "@/components/pokemon/TipoPokemon";
 import { capitalize } from "@/helpers/string.helper";
 import { leftZeros } from "@/helpers/utils";
 import { PokedexPokemon } from "@/models/Pokedex.types";
+import { ClickEvent } from "@/models/React.types";
 import { cva } from "class-variance-authority";
 import { AnimatePresence, motion } from "framer-motion";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
 
@@ -90,49 +92,51 @@ const textNumberClasses = cva([
 
 interface PokedexSidebarProps {
     pokemon: PokedexPokemon;
-    onNextPokemonClick: () => void;
-    onPrevPokemonClick: () => void;
+    onNextPokemonClick: (event: ClickEvent) => void;
+    onPrevPokemonClick: (event: ClickEvent) => void;
 }
 
 const PokedexSidebar = ({pokemon, onNextPokemonClick, onPrevPokemonClick} : PokedexSidebarProps) => {
 
 
     return (
-        <div className={twMerge(pokemonContainerClasses({firstType: pokemon.tipos[0].id, secondType: pokemon?.tipos[1]?.id || undefined}))}>
-            <div className="flex flex-col gap-4">
-                <div className={textNumberClasses({firstType: pokemon.tipos[0].id})}>
-                    <button type="button" className="text-2xl p-2" onClick={onPrevPokemonClick}>
-                        <LuChevronLeft />
-                    </button>
-                    <div>
-                        {leftZeros(pokemon.numero, 4)}
+        <Link className="w-full" to={`/pokemon/${pokemon.id}`}>
+            <div className={twMerge(pokemonContainerClasses({firstType: pokemon.tipos[0].id, secondType: pokemon?.tipos[1]?.id || undefined}))}>
+                <div className="flex flex-col gap-4">
+                    <div className={textNumberClasses({firstType: pokemon.tipos[0].id})}>
+                        <button type="button" className="text-2xl p-2" onClick={onPrevPokemonClick}>
+                            <LuChevronLeft />
+                        </button>
+                        <div>
+                            {leftZeros(pokemon.numero, 4)}
+                        </div>
+                        <button type="button" className="text-2xl p-2" onClick={onNextPokemonClick}>
+                            <LuChevronRight />
+                        </button>
                     </div>
-                    <button type="button" className="text-2xl p-2" onClick={onNextPokemonClick}>
-                        <LuChevronRight />
-                    </button>
-                </div>
-                <div className="w-full px-10 min-h-[212px]">
-                    <AnimatePresence initial={false}>
-                        <motion.img key={pokemon.id}
-                            initial={{opacity: 0, y: 50}}
-                            animate={{opacity: 1, y: 0}}
-                            transition={{bounce: 0.8}}
-                            src={pokemon.imagen.normal} alt={pokemon.nombre} 
-                        />
-                    </AnimatePresence>
-                </div>
-                <div className="text-center font-bold text-neutral-800">
-                    {capitalize(pokemon.nombre)}
+                    <div className="w-full px-10 min-h-[212px]">
+                        <AnimatePresence initial={false}>
+                            <motion.img key={pokemon.id}
+                                initial={{opacity: 0, y: 50}}
+                                animate={{opacity: 1, y: 0}}
+                                transition={{bounce: 0.8}}
+                                src={pokemon.imagen.normal} alt={pokemon.nombre} 
+                            />
+                        </AnimatePresence>
+                    </div>
+                    <div className="text-center font-bold text-neutral-800">
+                        {capitalize(pokemon.nombre)}
+                    </div>
+
+                    <motion.div initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} key={pokemon.id} layout className="flex gap-2 justify-center">
+                        {
+                            pokemon.tipos.map((tipo) => <TipoPokemon key={`tipo_${pokemon.id}_${tipo.id}`} type={tipo} />)
+                        }
+                    </motion.div>
                 </div>
 
-                <motion.div initial={{opacity: 0, x: -10}} animate={{opacity: 1, x: 0}} key={pokemon.id} layout className="flex gap-2 justify-center">
-                    {
-                        pokemon.tipos.map((tipo) => <TipoPokemon key={`tipo_${pokemon.id}_${tipo.id}`} type={tipo} />)
-                    }
-                </motion.div>
             </div>
-
-        </div>
+        </Link>
     )
 }
 
