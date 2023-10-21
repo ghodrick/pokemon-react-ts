@@ -1,9 +1,10 @@
+import { twMerge } from "tailwind-merge";
 import { menu } from "../../../config/menu";
 import Menu from "./Menu";
 
-const NavBar = () => {
+const NavBar = ({className = ''}) => {
     return ( 
-        <nav>
+        <nav className={twMerge(`${className} text-sm`)}>
             <Menu items={menu} />
         </nav>
      );
