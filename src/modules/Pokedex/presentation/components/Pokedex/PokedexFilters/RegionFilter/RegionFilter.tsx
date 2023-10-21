@@ -52,8 +52,8 @@ const RadioRegionButton = ({name, value} : RadioRegionButtonProps) => {
     }
 
     const classnameButton = clsx(
-        `py-1.5 px-2 w-full rounded-md border-2 text-center cursor-pointer tracking-wider text-sm font-semibold transition-all duration-200`,
-        isChecked ? `shadow-xl border-transparent bg-primary-400 shadow-primary-200 text-primary-foreground` : 'bg-container text-neutral-900 hover:bg-primary-400 hover:border-transparent hover:text-primary-foreground'
+        `py-1.5 px-2 rounded-md border-2 text-center cursor-pointer tracking-wider text-sm font-semibold transition-all duration-200`,
+        isChecked ? `shadow-lg sm:shadow-xl border-transparent bg-primary-400 shadow-primary-200 text-primary-foreground` : 'bg-container text-neutral-900 hover:bg-primary-400 hover:border-transparent hover:text-primary-foreground'
     )
 
     return (
@@ -67,7 +67,7 @@ const RadioRegionButton = ({name, value} : RadioRegionButtonProps) => {
                 onChange={onChange}
                 checked={isChecked}
             />
-            <label htmlFor={idRegion}>
+            <label htmlFor={idRegion} className="snap-center">
                 <div className={classnameButton}>
                     {capitalize(value)}
                 </div>

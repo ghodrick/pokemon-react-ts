@@ -56,7 +56,7 @@ const MovimientoPokemonData = ({data} : {data: MovimientoPokemon}) => {
     let claseAtaque = CLASE_ATAQUES[data.categoria];
 
     let textoMostrar = data.metodoAprendizaje === 'nivel' ? `Nivel ${data.nivel}` : capitalize(data.metodoAprendizaje);
-
+    
     return (
         <Tooltip title={data.descripcion} triggerAsChild>
             <div className={movimientoClasses({ type: data.tipo })}>

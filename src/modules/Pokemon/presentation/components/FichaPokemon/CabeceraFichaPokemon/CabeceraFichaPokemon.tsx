@@ -51,6 +51,7 @@ const CabeceraFichaPokemon = ({pokemon} : {pokemon: Pokemon}) => {
                     className={textClasses({type: pokemon.tipos[0].id})}
                     renderPrev={() => (
                         <PokemonPrevNextData
+                            className={'hidden sm:flex'}
                             pokemon={pokemon.pokemonPrev}
                         />
                     )}
@@ -63,7 +64,7 @@ const CabeceraFichaPokemon = ({pokemon} : {pokemon: Pokemon}) => {
                         animate={{opacity: 1}}
                         transition={{duration: 1}}
                         key={pokemon.id}
-                        className="w-60 h-60 p-5 -mt-24 drop-shadow-[10px_0px_5px_rgba(0,0,0,0.15)] select-none"
+                        className="w-50 h:50 sm:w-60 sm:h-60 p-5 -mt-24 drop-shadow-[10px_0px_5px_rgba(0,0,0,0.15)] select-none"
                     >
                         <img src={pokemon.imagen.normal} alt={pokemon.nombre} />
                     </motion.div>
@@ -85,15 +86,14 @@ const CabeceraFichaPokemon = ({pokemon} : {pokemon: Pokemon}) => {
                     className={textClasses({type: pokemon.tipos[0].id})}
                     renderPrev={() => (
                         <PokemonPrevNextData
+                            className={'hidden sm:flex'}
                             pokemon={pokemon.pokemonNext}
                         />
                     )}
                 />
             </div>
         </div>
-        <div className="h-10 bg-gradient-to-t from-gray-900/10">
-            
-        </div>
+        <div className="h-10 bg-gradient-to-t from-gray-900/10"></div>
         </>
     )
 }

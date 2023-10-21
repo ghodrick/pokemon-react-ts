@@ -8,14 +8,13 @@ interface EvolucionesProps {
 }
 const Evoluciones = ({data = null} : EvolucionesProps) => {
 
-    
 
     return (
         
             data 
             ?
             (
-                <div className="flex justify-center flex-1">
+                <div className="flex flex-1 pt-10 sm:pt-0 overflow-x-auto">
                     <EvolutionTree pokemon={[data]} />
                 </div>
             )
@@ -46,7 +45,7 @@ const EvolutionTree = ({pokemon} : {pokemon: PokemonEvolutions[]}) => {
     }
 
     return (
-        <div className={`grid gap-8 tree ${claseExtra}`} style={{gridTemplateColumns: `repeat(${repeat}, 1fr)`}}>
+        <div className={`grid mx-auto gap-8 tree ${claseExtra}`} style={{gridTemplateColumns: `repeat(${repeat}, 1fr)`}}>
             {
                 pokemon.map(nodo => (
                     <EvolutionNode key={nodo.nombre} nodo={nodo} />
@@ -65,10 +64,10 @@ const EvolutionNode = ({nodo} : {nodo: PokemonEvolutions}) => {
     let img = nodo.imagen || '';
 
     return (
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-2 sm:gap-6">
             <Link to={`/pokemon/${nodo.id}`} className="cursor-pointer">
                 <div className="flex flex-col relative items-center">
-                    <picture className="w-28 h-28 block border-neutral-700 border-4 shadow-md shadow-neutral-900/20 p-2 bg-neutral-900 rounded-full">
+                    <picture className="w-20 sm:w-28 sm:h-28 transition-all block border-neutral-700 border-4 shadow-md shadow-neutral-900/20 p-2 bg-neutral-900 rounded-full">
                         <img src={img} alt={nodo.nombre} />
                     </picture>
                     <span className="text-xs -mt-3 font-extrabold tracking-wider uppercase text-container">
@@ -79,7 +78,7 @@ const EvolutionNode = ({nodo} : {nodo: PokemonEvolutions}) => {
             {
                 nodo.evoluciona && numEvoluciones > 0 && (
                     <>
-                        <div className="text-6xl text-neutral-600">
+                        <div className="text-4xl sm:text-6xl text-neutral-600">
                             <MdChevronRight />
                         </div>
                         <EvolutionTree pokemon={nodo.evoluciona} />

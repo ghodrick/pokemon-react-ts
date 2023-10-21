@@ -23,11 +23,11 @@ const SeccionFortalezas = ({tipos} : SeccionFortalezasProps) => {
     return (
         <>
             <div>
-                <h4 className="text-2xl font-bold tracking-wide">Fortalezas</h4>
+                <h4 className="text-xl sm:text-2xl font-bold tracking-wide">Fortalezas</h4>
                 <PokemonTipoFortaleza data={typeWeaknessArray} show={'resistant'} />
             </div>
             <div>
-                <h4 className="text-2xl font-bold tracking-wide">Debilidades</h4>
+                <h4 className="text-xl sm:text-2xl font-bold tracking-wide">Debilidades</h4>
                 <PokemonTipoFortaleza data={typeWeaknessArray} show={'weak'} />
             </div>
         </>
