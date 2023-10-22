@@ -293,7 +293,7 @@ export const transformaMovimiento = (movimiento: PokeApiMovement, movimientoPoke
 
     if (descripcionSpanish)
     {
-        descripcion = descripcionSpanish.flavor_text.replaceAll('\n', '');
+        descripcion = descripcionSpanish.flavor_text.replaceAll('\n', ' ');
     }
 
     //Buscamos la descripción en español
