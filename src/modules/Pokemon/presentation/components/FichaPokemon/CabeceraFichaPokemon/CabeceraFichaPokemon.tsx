@@ -41,6 +41,13 @@ const textClasses = cva(
 const CabeceraFichaPokemon = ({pokemon} : {pokemon: Pokemon}) => {
 
 
+    let imagenUsar = pokemon.imagen.normal;
+
+    if (!imagenUsar)
+    {
+        imagenUsar = '/assets/no-image-placeholder.png';
+    }
+
     return (
         <>
         <div className='grid grid-cols-3 min-h-[250px] rounded-t-xl pt-4 px-2 pb-10 transition-all duration-500'>
@@ -66,7 +73,7 @@ const CabeceraFichaPokemon = ({pokemon} : {pokemon: Pokemon}) => {
                         key={pokemon.id}
                         className="w-50 h:50 sm:w-60 sm:h-60 p-5 -mt-24 drop-shadow-[10px_0px_5px_rgba(0,0,0,0.15)] select-none"
                     >
-                        <img src={pokemon.imagen.normal} alt={pokemon.nombre} />
+                        <img src={imagenUsar} alt={pokemon.nombre} />
                     </motion.div>
                     <div className={twMerge("flex flex-col items-center font-mono", textClasses({type:pokemon.tipos[0].id}))}>
                         <span className="text-lg opacity-70 font-semibold">{leftZeros(pokemon.numero, 4)}</span>

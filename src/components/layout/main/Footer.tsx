@@ -7,7 +7,7 @@ const Footer = () => {
             <div>
                 <div>Made with &#9829; by <a target="_blank" rel="noreferrer" className="font-semibold text-primary hover:underline underline-offset-2" href="https://github.com/ghodrick">Ghodrick</a></div>
                 <div className="text-xs">
-                    Copyright &#169; {anyoActual}
+                    {anyoActual}
                 </div>
             </div>
         </footer>

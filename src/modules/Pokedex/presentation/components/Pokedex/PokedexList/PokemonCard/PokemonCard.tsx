@@ -16,6 +16,11 @@ const PokemonCard = ({pokemon, tipoImagen = 'normal'} : PokemonCardProps) => {
 
     let imagenUsar = tipoImagen === 'normal' ? pokemon.imagen.normal : pokemon.imagen.shiny;
 
+    if (!imagenUsar)
+    {
+        imagenUsar = '/assets/no-image-placeholder.png';
+    }
+
     return ( 
             <Link to={`/pokemon/${pokemon.id}`}>
                 <motion.div

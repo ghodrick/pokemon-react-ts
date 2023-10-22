@@ -1,6 +1,6 @@
-import { PiSunDimBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
+import DarkModeActions from "./DarkModeActions";
 import Logo from "./Logo";
 import NavBar from "./NavBar";
 
@@ -19,9 +19,8 @@ const Header2 = ({className = ''} : Header2Props) => {
                 </Link>
             </div>
             <NavBar className='flex-1' />
-            <div className="text-2xl text-primary">
-                {/* <DarkModeActions /> */}
-                <PiSunDimBold />
+            <div className="">
+                <DarkModeActions />
             </div>
         </header>
     )
