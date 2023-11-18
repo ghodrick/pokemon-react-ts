@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import { queryClientConfig } from "./config/react-query";
 import RepositoryProvider from "./contexts/RepositoryProvider/RepositoryProvider";
+import { ThemeProvider } from "./contexts/ThemeProvider/ThemeProvider";
 import "./index.css";
 import './interceptors/axios.interceptors';
 import { PokeApiPokedexRepository } from "./modules/Pokedex/infrastructure/PokeApiPokedexRepository";
@@ -58,7 +59,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <RepositoryProvider repositories={repositories}>
-            <RouterProvider router={router} />
+            <ThemeProvider>
+              <RouterProvider router={router} />
+            </ThemeProvider>
         </RepositoryProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

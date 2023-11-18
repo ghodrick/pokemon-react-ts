@@ -15,24 +15,24 @@ const textClasses = cva(
     {
         variants: {
             type: {
-                bug: 'text-bicho-900',
-                dark: 'text-siniestro-900',
-                dragon: 'text-dragon-900',
-                electric: 'text-electrico-900',
-                fairy: 'text-hada-900',
-                fighting: 'text-lucha-900',
-                fire: 'text-fuego-900',
-                flying: 'text-volador-900',
-                ghost: 'text-fantasma-900',
-                grass: 'text-planta-900',
-                ground: 'text-tierra-900',
-                ice: 'text-hielo-900',
-                normal: 'text-normal-900',
-                poison: 'text-veneno-900',
-                psychic: 'text-psiquico-900',
-                rock: 'text-roca-900',
-                steel: 'text-acero-900',
-                water: 'text-agua-900',
+                bug: 'text-bicho-900 dark:text-bicho-100',
+                dark: 'text-siniestro-900 dark:text-siniestro-100',
+                dragon: 'text-dragon-900 dark:text-dragon-100',
+                electric: 'text-electrico-900 dark:text-electrico-100',
+                fairy: 'text-hada-900 dark:text-hada-100',
+                fighting: 'text-lucha-900 dark:text-lucha-100',
+                fire: 'text-fuego-900 dark:text-fuego-100',
+                flying: 'text-volador-900 dark:text-volador-100',
+                ghost: 'text-fantasma-900 dark:text-fantasma-100',
+                grass: 'text-planta-900 dark:text-planta-100',
+                ground: 'text-tierra-900 dark:text-tierra-100',
+                ice: 'text-hielo-900 dark:text-hada-100',
+                normal: 'text-normal-900 dark:text-normal-100',
+                poison: 'text-veneno-900 dark:text-veneno-100',
+                psychic: 'text-psiquico-900 dark:text-psiquico-100',
+                rock: 'text-roca-900 dark:text-roca-100',
+                steel: 'text-acero-900 dark:text-acero-100',
+                water: 'text-agua-900 dark:text-agua-100',
             }
         },
     }
@@ -100,7 +100,7 @@ const CabeceraFichaPokemon = ({pokemon} : {pokemon: Pokemon}) => {
                 />
             </div>
         </div>
-        <div className="h-10 bg-gradient-to-t from-gray-900/10"></div>
+        <div className="h-10 bg-gradient-to-t from-gray-900/10 dark:from-gray-950/20"></div>
         </>
     )
 }

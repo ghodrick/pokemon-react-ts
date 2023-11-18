@@ -29,7 +29,7 @@ const CheckboxTipoPokemon = ({name, data, value} : CheckboxTipoPokemonProps) => 
     const classNames = {
         container: clsx(
             'cursor-pointer gap-3 transition-all transition-250 ', 
-            !isChecked ? 'bg-container border border-border text-container-foreground/70 shadow-none hover:bg-primary-50 hover:text-primary-800' : 'border border-transparent'
+            !isChecked ? 'bg-container border border-border text-container-foreground/70 shadow-none hover:bg-primary-50 hover:text-primary-800 dark:bg-slate-700 dark:border-slate-700 dark:text-slate-50 dark:hover:text-primary-800 dark:hover:bg-primary-100' : 'border border-transparent'
         )
     }
 

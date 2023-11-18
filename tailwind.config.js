@@ -53,21 +53,6 @@ module.exports = {
           950: "hsl(var(--secondary-950))",
           foreground: "hsl(var(--secondary-foreground))",
         },
-        terciary: {
-          DEFAULT: "hsl(var(--terciary-500))",
-          50:  "hsl(var(--terciary-50))",
-          100: "hsl(var(--terciary-100))",
-          200: "hsl(var(--terciary-200))",
-          300: "hsl(var(--terciary-300))",
-          400: "hsl(var(--terciary-400))",
-          500: "hsl(var(--terciary-500))",
-          600: "hsl(var(--terciary-600))",
-          700: "hsl(var(--terciary-700))",
-          800: "hsl(var(--terciary-800))",
-          900: "hsl(var(--terciary-900))",
-          950: "hsl(var(--terciary-950))",
-          foreground: "hsl(var(--terciary-foreground))",
-        },
         container: {
           DEFAULT: "hsl(var(--container))",
           foreground: "hsl(var(--container-foreground))",
@@ -78,8 +63,6 @@ module.exports = {
         },
         neutral: {
           DEFAULT: "hsl(var(--neutral-500))",
-          'foreground-light': "hsl(var(--neutral-foreground-light))",
-          'foreground-dark': "hsl(var(--neutral-foreground-dark))",
           50:  "hsl(var(--neutral-50))",
           100: "hsl(var(--neutral-100))",
           200: "hsl(var(--neutral-200))",
@@ -103,9 +86,6 @@ module.exports = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },
-        shadow: {
-          DEFAULT: "hsl(var(--shadow))"
         },
         planta: {
           DEFAULT: "hsl(var(--planta-600))",
@@ -366,7 +346,6 @@ module.exports = {
         mono: '"Chivo Mono", monospace'
       },
       borderRadius: {
-        asd: '1px',
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",

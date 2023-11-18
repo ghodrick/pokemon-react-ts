@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 
 const pokemonContainerClasses = cva(
     [
-        "w-full shadow-sm rounded-xl"
+        "w-full shadow-sm rounded-xl dark:!bg-slate-500/10"
     ],
     {
         variants: {

@@ -53,7 +53,7 @@ const RadioRegionButton = ({name, value} : RadioRegionButtonProps) => {
 
     const classnameButton = clsx(
         `py-1.5 px-2 rounded-md border-2 text-center cursor-pointer tracking-wider text-sm font-semibold transition-all duration-200`,
-        isChecked ? `shadow-lg sm:shadow-xl border-transparent bg-primary-400 shadow-primary-200 text-primary-foreground` : 'bg-container text-neutral-900 hover:bg-primary-400 hover:border-transparent hover:text-primary-foreground'
+        isChecked ? `shadow-lg sm:shadow-xl border-transparent bg-primary-400 dark:bg-primary-300 shadow-primary-200 text-primary-foreground dark:text-slate-900` : 'bg-container dark:bg-slate-700 hover:bg-primary-400 dark:hover:bg-primary-300 dark:hover:border-primary-300 hover:border-transparent hover:text-primary-foreground dark:hover:text-slate-900 dark:border-slate-700'
     )
 
     return (

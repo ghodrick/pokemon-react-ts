@@ -9,7 +9,7 @@ import SelectContext from "./context/useSelect";
 
 const comboboxButton = cva(
     [
-        "relative group w-full cursor-pointer text-left text-slate-700 shadow-shadow/50 border-border transtion-all duration-200",
+        "relative group w-full cursor-pointer text-left text-slate-700 shadow-neutral/50 border-border transtion-all duration-200",
         "disabled:opacity-80 disabled:cursor-not-allowed",
         "focus:outline-none focus:ring-2",
         "sm:leading-6"
@@ -44,7 +44,6 @@ const comboboxButton = cva(
             color: {
                 "primary": "focus:ring-primary",
                 "secondary": "focus:ring-secondary",
-                "terciary": "focus:ring-terciary",
                 "gray": "focus:ring-neutral"
             }
         },
@@ -61,11 +60,6 @@ const comboboxButton = cva(
             },
             {
                 variant: "ghost",
-                color: "terciary",
-                className: "hover:bg-terciary-100"
-            },
-            {
-                variant: "ghost",
                 color: "gray",
                 className: "hover:bg-neutral-50"
             },
@@ -78,11 +72,6 @@ const comboboxButton = cva(
                 variant: "soft",
                 color: "secondary",
                 className: "bg-secondary-100"
-            },
-            {
-                variant: "soft",
-                color: "terciary",
-                className: "bg-terciary-100"
             },
             {
                 variant: "soft",

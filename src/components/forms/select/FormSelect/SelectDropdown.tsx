@@ -1,11 +1,11 @@
-import { Combobox } from "@headlessui/react";
-import clsx from "clsx";
-import { MdCheck } from "react-icons/md";
-import React, { memo, useMemo } from 'react';
 import { useSearch } from "@/hooks/useSearch";
-import { isEmpty } from "lodash";
-import { useSelect } from "./context/useSelect";
+import { Combobox } from "@headlessui/react";
 import { cva } from "class-variance-authority";
+import clsx from "clsx";
+import { isEmpty } from "lodash";
+import React, { memo, useMemo } from 'react';
+import { MdCheck } from "react-icons/md";
+import { useSelect } from "./context/useSelect";
 
 const optionClasses = cva(
     [
@@ -16,7 +16,6 @@ const optionClasses = cva(
             color: {
                 primary: '',
                 secondary: '',
-                terciary: '',
                 gray: ''
             },
             active: {
@@ -36,14 +35,9 @@ const optionClasses = cva(
                 className: 'bg-secondary text-secondary-foreground'
             },
             {
-                color: 'terciary',
-                active: true,
-                className: 'bg-terciary text-terciary-foreground'
-            },
-            {
                 color: 'gray',
                 active: true,
-                className: 'bg-neutral-900 text-neutral-foreground-light'
+                className: 'bg-neutral-900 text-neutral-100'
             }
         ]
     }
@@ -58,7 +52,6 @@ const checkedClasses = cva(
             color: {
                 primary: '',
                 secondary: '',
-                terciary: '',
                 gray: ''
             },
             active: {
@@ -88,24 +81,9 @@ const checkedClasses = cva(
                 className: 'text-secondary'
             },
             {
-                color: 'terciary',
-                active: true,
-                className: 'text-terciary-foreground'
-            },
-            {
-                color: 'terciary',
-                active: false,
-                className: 'text-terciary'
-            },
-            {
                 color: 'gray',
                 active: true,
-                className: 'text-neutral-foreground-light'
-            },
-            {
-                color: 'terciary',
-                active: false,
-                className: 'text-neutral'
+                className: 'text-neutral-100'
             }
         ]
     }

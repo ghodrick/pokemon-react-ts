@@ -16,7 +16,7 @@ const FichaPokemon = ({pokemon} : FichaPokemonProps) => {
     return (
         <>
             <CabeceraFichaPokemon pokemon={pokemon} />
-            <div className="bg-container/80 -mt-5 backdrop-blur-md rounded-t-2xl rounded-b-xl">
+            <div className="bg-white/80 dark:bg-slate-800 -mt-5 backdrop-blur-md rounded-t-2xl rounded-b-xl">
                 
                 <section className="grid sm:grid-cols-2 min-h-[250px] p-7 gap-12">
                     <div>
@@ -38,7 +38,7 @@ const FichaPokemon = ({pokemon} : FichaPokemonProps) => {
                     <MovimientosPokemon movimientos={pokemon.movimientos} type={pokemon.tipos[0].id} />
                 </section>
 
-                <section className="bg-gradient-to-t from-slate-700/90 to-slate-900 min-h-[250px] flex flex-col p-7 text-container">
+                <section className="bg-gradient-to-t from-slate-700/90 to-slate-900 dark:from-slate-950/80 dark:to-slate-900 min-h-[250px] flex flex-col p-7 text-container">
                     <h4 className="text-xl sm:text-2xl font-bold tracking-wide">Evoluciones</h4>
                     <Evoluciones data={pokemon.evoluciones} />
                 </section>

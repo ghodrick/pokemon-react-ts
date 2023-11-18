@@ -21,7 +21,7 @@ const NextPrevButton = ({href, orientation = 'right', renderPrev = undefined, cl
 
     return (
         <Link to={href}>
-            <div className={twMerge("flex items-center transition-all duration-200 px-4 rounded-lg hover:bg-container/20", className)}>
+            <div className={twMerge("flex items-center transition-all duration-200 px-4 rounded-lg hover:bg-white/20", className)}>
                 {
                     typeof renderPrev === 'function' && (
                         <div className={cnRenderContainer}>

@@ -20,7 +20,7 @@ const PokemonFilter = memo(() => {
                 
             </div>
 
-            <div className="flex overflow-x-scroll snap-mandatory snap-x pb-11 sm:pb-0 sm:overflow-auto sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-4 mt-2 sm:mt-10">
+            <div className="flex overflow-x-scroll snap-mandatory snap-x pb-11 sm:pb-12 sm:overflow-auto sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-4 mt-2 sm:mt-10">
                 {
                     Object.entries(TIPOS_POKEMON).map(([idTipo, datosTipo]) => (
 
